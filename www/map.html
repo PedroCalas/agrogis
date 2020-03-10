@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/L.Control.HtmlLegend.css">
+
+    <!-- BOOTSTRAP Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container-fluid" id="contenedorMapa">
+        <div class="row justify-content-center align-items-center">
+            <header class="col col-12 text-left">
+                <img src="img/logo.jpg" alt="" width="20%" class="img-responsive">
+            </header>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col col-10 py-1">
+                 <form>
+                   <select id="capasOpciones" class="form-control custom-select">
+                     <option value="" name="">Seleccione Una Capa</option>
+                     <option value="0" name="aluminio">Aluminio</option>
+                     <option value="1" name="arcilla">Arcilla</option>
+                     <option value="2" name="boro">Boro</option>
+                     <option value="3" name="calcio">Calcio</option>
+                     <option value="4" name="ctc">CTC</option>
+                     <option value="5" name="cobre">Cobre</option>
+                     <option value="6" name="hierro">Hierro</option>
+                     <option value="7" name="hidrogeno">Hidrógeno</option>
+                     <option value="8" name="potasio">Potasio</option>
+                     <option value="9" name="magnesio">Magnesio</option>
+                     <option value="10" name="manganeso">Manganeso</option>
+                     <option value="11" name="mos">Materia Orgánica</option>
+                     <option value="12" name="mos">Fósforo</option>
+                     <option value="13" name="pcal">PCAL</option>
+                     <option value="14" name="ph">Ph</option>
+                     <option value="15" name="azufre">Azufre</option>
+                     <option value="16" name="silicio">Silicio</option>
+                     <option value="17" name="zn">zinc</option>
+                     <option value="18" name="calcario">Calcario</option>
+                     <option value="19" name="kcal">Kcl</option>
+                     <option value="20" name="sat">SPS</option>
+                     <option value="21" name="sili">Silicato</option>
+                   </select>
+                 </form>
+             </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col col-11" id="map"></div>
+        </div>
+        <nav class="row justify-content-center">
+            <div class="col col-4 text-center pt-1">
+                <button id="compararBoton" class="btn btn-outline-primary"><i class="fas fa-adjust" style="color:white;"></i></button>
+            </div>
+        </nav>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"></script>
+
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript" src="js/leaflet.js"></script>
+    <script src=”http://maps.google.com/maps/api/js?v=3&sensor=false”></script>
+
+    <script src="https://unpkg.com/proj4"></script>
+    <script src="https://unpkg.com/georaster"></script>
+    <script src="https://unpkg.com/georaster-layer-for-leaflet/georaster-layer-for-leaflet.browserify.min.js"></script>
+    <script type="text/javascript" src="js/leaflet-side-by-side.js"></script>
+    <script type="text/javascript" src="js/L.Control.HtmlLegend.js"></script>
+    <script type="text/javascript" src="js/Leaflet.Control.Custom.js"></script>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+    <script type="text/javascript" src="js/map2.js"></script>
+</body>
+</html>
