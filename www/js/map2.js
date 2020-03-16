@@ -702,42 +702,61 @@ function onDeviceReady() {
 
 
 function cargarMapa(){
-	map = 	L.map('map',{
-				minZoom: 0,
-				maxZoom: 15,
-				zoom: 12
-	}).setView([-24.898, -54.547]);
 
 	var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-						attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-	}).addTo(map);
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		zIndex: 0
+	});
 
 	var satelite = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGpob29rZXIiLCJhIjoiUllwRXNldyJ9.-wSBKOCm_XUxGiM1yWLxPQ', {
-		id: 'pjhooker.lad5pfap'
+		id: 'pjhooker.lad5pfap',
+		zIndex: 0
 	});
+
+
+	map = L.map('map',{
+			minZoom: 	0,
+			maxZoom: 	15,
+			zoom: 		12,
+			layers: 	[streets]
+	}).setView([-24.898, -54.547]);
 
 	//CONTROL LAYER
 	var baseMaps = {
 		Streets: streets,
 		Satelite: satelite
 	};
+
 	L.control.layers(baseMaps,null,{
-		collapsed: false
+		collapsed: false,
+		autoZIndex: false
 	}).addTo(map);
 }
 
 
 $("#compararBoton").click(function(){
-	var capa1, capa2;
-	if (config1){
-		capa1 = config1.capa;
-	}
-	if (config2){
-		capa2 = config2.capa;
-	}
-	console.log("compararboton")
-	//Para crear sólo un control
-	if (!controlSideBySide){
+	if (controlSideBySide){
+		map.removeControl(controlSideBySide);
+		controlSideBySide = null;
+
+		if (config2){
+			map.removeLayer(config2.capa);
+			config2 = null;
+		}
+
+		if (controlLeyendaDerecha){
+			map.removeControl(controlLeyendaDerecha);
+			controlLeyendaDerecha = null;
+		}
+
+	} else {
+		var capa1, capa2;
+		if (config1){
+			capa1 = config1.capa;
+		}
+		if (config2){
+			capa2 = config2.capa;
+		}
 		controlSideBySide = L.control.sideBySide(capa1, capa2).addTo(map);
 	}
 });
@@ -758,50 +777,6 @@ $("#capasOpciones").change(function(){
 	} else {
 		anyadirCapa(config);
 	}
-
-	// if (controlSideBySide && config1){
-	// 	//Si se ha indicado el control side by side y se ha seleccionado una primera capa,
-	//  	//utilizamos la capa 2
-	//  	if (capaSeleccionada2) {
-	//  		//Borramos capa seleccionada anterior
-	//  		map.removeLayer(capaSeleccionada2);
-	// 	}
-			
-	//  	//Añadimos la nueva capa
-	//  	capaSeleccionada2 = capa;
-	// 	capaSeleccionada2.addTo(map);
-
-	// 	//Añadimos la leyenda de la derecha
-	// 	parametrosLeyenda.position = "bottomright";
-	// 	if (controlLeyendaDerecha){
-	// 		map.removeControl(controlLeyendaDerecha);
-	// 	}
-	// 	controlLeyendaDerecha = L.control.htmllegend(parametrosLeyenda);
-	// 	map.addControl(controlLeyendaDerecha);
-	// } else {
-	// 	//Si no, trabajamos sobre la capa 1
-	// 	if (capaSeleccionada1) {
-	// 		//Borramos capa seleccionada anterior
-	// 		map.removeLayer(capaSeleccionada1);
-	// 	}
-	// 	//Añadimos la nueva capa
-	// 	capaSeleccionada1 = capa;
-	// 	capaSeleccionada1.addTo(map);
-
-	// 	//Añadimos la leyenda de la izquierda
-	// 	parametrosLeyenda.position = "bottomleft";
-	// 	if (controlLeyendaIzquierda){
-	// 		map.removeControl(controlLeyendaIzquierda);
-	// 	}
-	// 	controlLeyendaIzquierda = L.control.htmllegend(parametrosLeyenda);
-	// 	map.addControl(controlLeyendaIzquierda);
-	// }
-
-	// //Si se ha cargado, indicamos las capas de la izquierda y derecha del control
-	// if (controlSideBySide){
-	// 	controlSideBySide.setLeftLayers(capaSeleccionada1);
-	// 	controlSideBySide.setRightLayers(capaSeleccionada2);
-	// }
 });
 
 
@@ -812,10 +787,6 @@ function ficheroEncontrado(fileEntry) {
 		console.log(config)
 		var reader = new FileReader();
 		reader.onloadend = function(e) {
-			console.log("onloadend")
-			console.log(e)
-			console.log(config)
-			
 			parseGeoraster(e.target.result).then(function(georaster){
 				var capa = new GeoRasterLayer({
 					attribution: "Planet",
