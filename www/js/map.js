@@ -16,7 +16,7 @@ var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
 // var url_to_geotiff_file = "https://s3-us-west-2.amazonaws.com/planet-disaster-data/hurricane-harvey/SkySat_Freeport_s03_20170831T162740Z3.tif";
 // var url_to_geotiff_file = "http://127.0.0.1:53230/www/tif/JYN012002_Argila.tif";
 // var url_to_geotiff_file = "http://127.0.0.1:53230/www/shp/pruebageotif.tif";
-var al_to_geotiff_file = "http://127.0.0.1:60101/www/geotif/mn.tif";
+var al_to_geotiff_file = "http://127.0.0.1:60101/www/geotif/argila.tif";
 parseGeoraster(al_to_geotiff_file).then(georaster => {
     console.log("georaster:", georaster);
     var aluminio = new GeoRasterLayer({

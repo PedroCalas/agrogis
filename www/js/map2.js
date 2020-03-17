@@ -761,7 +761,24 @@ $("#compararBoton").click(function(){
 	}
 });
 
+//BOTON GEOLOCALIZAR
+	  var marcadorGeo = L.AwesomeMarkers.icon({
+		  icon: 'child',
+		  prefix:'fa',
+		  markerColor: 'blue'
+	  });
 
+	  $("#button-geo").click(function(){
+		  map.locate({setView: true, maxZoom: 17})
+		  .on('locationfound', function(e){
+			  var marker = L.marker([e.latitude, e.longitude],{icon:marcadorGeo}).bindPopup('Tu estás aquí :)');
+			  map.addLayer(marker);
+		  })
+		  .on('locationerror', function(e){
+			  console.log(e);
+			  alert("Location access denied.");
+		  });
+	  });
 
 
 
@@ -793,7 +810,7 @@ function ficheroEncontrado(fileEntry) {
 					georaster: georaster,
 					opacity: 0.9,
 					pixelValuesToColorFn: configGeoraster[0].pixelValuesToColorFn,
-					resolution: 300 // optional parameter for adjusting display resolution
+					resolution: 400 // optional parameter for adjusting display resolution
 				});
 				map.fitBounds(capa.getBounds());
 
