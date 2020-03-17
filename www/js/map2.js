@@ -809,7 +809,7 @@ function ficheroEncontrado(fileEntry) {
 					attribution: "Planet",
 					georaster: georaster,
 					opacity: 0.9,
-					pixelValuesToColorFn: configGeoraster[0].pixelValuesToColorFn,
+					pixelValuesToColorFn: config.pixelValuesToColorFn,
 					resolution: 400 // optional parameter for adjusting display resolution
 				});
 				map.fitBounds(capa.getBounds());
