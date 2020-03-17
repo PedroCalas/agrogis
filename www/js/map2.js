@@ -793,10 +793,10 @@ function ficheroEncontrado(fileEntry) {
 					georaster: georaster,
 					opacity: 0.9,
 					pixelValuesToColorFn: configGeoraster[0].pixelValuesToColorFn,
-					resolution: 350 // optional parameter for adjusting display resolution
+					resolution: 300 // optional parameter for adjusting display resolution
 				});
 				map.fitBounds(capa.getBounds());
-				
+
 				config.capa = capa;
 				anyadirCapa(config);
 			}.bind(this))
@@ -861,8 +861,8 @@ function mostrarLeyenda(config, posicionLeyenda){
 			map.removeControl(controlLeyendaDerecha);
 		}
 	}
-	
-	var parametrosLeyenda = {		
+
+	var parametrosLeyenda = {
 		position: 			posicionLeyenda,
 		collapseSimple: 	true,
 		detectStretched:	true,
@@ -876,8 +876,8 @@ function mostrarLeyenda(config, posicionLeyenda){
 	for(var i = 0; i < parametrosLeyenda.legends[0].elements.length; i++){
 		parametrosLeyenda.legends[0].elements[i].html = "";
 	}
-	
-	
+
+
 	var control = L.control.htmllegend(parametrosLeyenda);
 	map.addControl(control);
 
@@ -887,5 +887,3 @@ function mostrarLeyenda(config, posicionLeyenda){
 		controlLeyendaDerecha = control;
 	}
 }
-
-

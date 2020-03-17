@@ -16,7 +16,7 @@ var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
 // var url_to_geotiff_file = "https://s3-us-west-2.amazonaws.com/planet-disaster-data/hurricane-harvey/SkySat_Freeport_s03_20170831T162740Z3.tif";
 // var url_to_geotiff_file = "http://127.0.0.1:53230/www/tif/JYN012002_Argila.tif";
 // var url_to_geotiff_file = "http://127.0.0.1:53230/www/shp/pruebageotif.tif";
-var al_to_geotiff_file = "http://127.0.0.1:3000/www/geotif/mn.tif";
+var al_to_geotiff_file = "http://127.0.0.1:60101/www/geotif/mn.tif";
 parseGeoraster(al_to_geotiff_file).then(georaster => {
     console.log("georaster:", georaster);
     var aluminio = new GeoRasterLayer({
@@ -24,15 +24,23 @@ parseGeoraster(al_to_geotiff_file).then(georaster => {
         georaster: georaster,
         opacity: 0.9,
         pixelValuesToColorFn: values => values[0] === -3.4028230607370965e+38? null :
-                        (values[0] < 1) ? 'rgb(11,11,57)' :
-                        (values[0] >= 1 && values[0] <= 500) ? 'rgb(4,4,180)' :
-                        (values[0] > 500 && values[0] <= 1000) ? 'rgb(11,97,11)' :
-                        (values[0] > 1000 && values[0] <= 1500) ? 'rgb(8,138,8)' :
-                        (values[0] > 1500 && values[0] <= 2000) ? 'rgb(4,180,4)' :
-                        (values[0] > 2000 && values[0] <= 2500) ? 'rgb(255,191,0)' :
-                        (values[0] > 2500 && values[0] <= 3000) ? 'rgb(223,116,1)' :
-                        (values[0] >= 3000) ? 'rgb(138,8,8)' :
+                        (values[0] <  10 )					? '#ff9800' :
+                        (values[0] >= 10 && values[0] < 25) 	? '#cddc39' :
+                        (values[0] >= 25 && values[0] < 45) 	? '#4caf50' :
+                        (values[0] >= 45 && values[0] < 55) 	? '#215a23' :
+                        (values[0] >= 55) 					? '#20308a' :
                         'rgba(255,255,255,0)',
+
+
+                        // (values[0] < 1) ? 'rgb(11,11,57)' :
+                        // (values[0] >= 1 && values[0] <= 500) ? 'rgb(4,4,180)' :
+                        // (values[0] > 500 && values[0] <= 1000) ? 'rgb(11,97,11)' :
+                        // (values[0] > 1000 && values[0] <= 1500) ? 'rgb(8,138,8)' :
+                        // (values[0] > 1500 && values[0] <= 2000) ? 'rgb(4,180,4)' :
+                        // (values[0] > 2000 && values[0] <= 2500) ? 'rgb(255,191,0)' :
+                        // (values[0] > 2500 && values[0] <= 3000) ? 'rgb(223,116,1)' :
+                        // (values[0] >= 3000) ? 'rgb(138,8,8)' :
+                        // 'rgba(255,255,255,0)',
         resolution: 350 // optional parameter for adjusting display resolution
     });
     aluminio.addTo(map);
