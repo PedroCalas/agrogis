@@ -15,13 +15,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div class="container-fluid" id="contenedorMapa">
+    <div class="container-fluid encabezadoMenu">
         <div class="row justify-content-center align-items-center">
-            <header class="col col-12 text-left">
-                <img src="img/logo.jpg" alt="" width="20%" class="img-responsive">
-            </header>
+            <div class="col col-12 text-center">
+                <a href="menu.html"><img src="img/logofondoblanco.jpg" alt="" width="15%" class="img-responsive"></a>
+            </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="container-fluid" id="contenedorMapa">
+        <div class="row justify-content-center mt-1">
             <div class="col col-10 py-1">
                  <form>
                    <select id="capasOpciones" class="form-control custom-select">
@@ -57,12 +58,19 @@
         </div>
 
         <div id="button-geo-div">
-           <button id="button-geo" type="button" class="btn mapbuttons" style="background-color:rgb(0, 69, 147);color:rgb(255,255,255);"><i class="fa fa-crosshairs"></i></button>
+           <button id="button-geo" type="button" class="btn mapbuttons" style="background-color:green;color:rgb(255,255,255);"><i class="fa fa-crosshairs"></i></button>
         </div>
-
+    </div>
+    <div class="container-fluid" id="menuFooter">
         <nav class="row justify-content-center">
-            <div class="col col-4 text-center pt-1">
-                <button id="compararBoton" class="btn btn-outline-primary"><i class="fas fa-adjust" style="color:white;"></i></button>
+            <div class="col col-4 pt-1">
+                <button class="btn btn-success"><p>Donwloads</p></button>
+            </div>
+            <div class="col col-4  pt-1">
+                <button  class="btn btn-success"><p>Recomendación</p></button>
+            </div>
+            <div class="col col-4  pt-1">
+                <button id="compararBoton" class="btn btn-success"><p>Comparar</p></button>
             </div>
         </nav>
     </div>
