@@ -1,3 +1,11 @@
+
+@font-face {
+  font-family: 'Eras-Bold';
+  src: url('webfont/Eras-Bold/Eras-Bold.eot?#iefix') format('embedded-opentype'),  url('webfont/Eras-Bold/Eras-Bold.woff') format('woff'), url('webfont/Eras-Bold/Eras-Bold.ttf')  format('truetype'), url('webfont/Eras-Bold/Eras-Bold.svg#Eras-Bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body{
     margin: 0px;
     padding: 0px;
@@ -23,11 +31,11 @@ body{
     box-shadow: 2px 2px black;
 }
 #contenedorPortada h1{
-    font-family: 'Bitter', serif;
+    font-family: 'Eras-Bold', serif;
     color: white;
     font-size: 1.5em;
     font-weight: bold;
-    -webkit-text-stroke: 0.2px black;
+    /* -webkit-text-stroke: 0.2px black; */
 }
 .encabezadoMenu{
     background-color: black;
@@ -38,8 +46,11 @@ body{
     border: 2px solid #173318;
     border-radius: 10px;
     box-shadow: 1px 1px green;
+    width: 15%;
 }
 #contenedorMenu{
+    font-family: 'Eras-Bold', serif;
+
     width: 100%;
     height: 85vh;
     /* background-color: rgb(0, 69, 147); */
@@ -55,10 +66,10 @@ body{
     border-radius: 20px;
 }
 #contenedorMenu h6{
-    margin-top: 60px;
+    padding-top: 50px;
     color: white;
-    font-family: 'Bitter', serif;
-    font-size: 0.95em;
+    font-family: 'Eras-Bold', serif;
+    font-size: 1.1em;
     -webkit-text-stroke: 0.2px black;
 }
 
@@ -107,11 +118,17 @@ nav{
 
 #menuFooter p{
     font-size: 0.5em;
-    font-family: 'Bitter', serif;
-    -webkit-text-stroke: 0.2px #173318;
+    font-family: 'Eras-Bold', serif;
+    /* -webkit-text-stroke: 0.2px #173318; */
 }
 
 @media (min-width: 576px) {
+    .encabezadoMenu img{
+        width: 7%;
+    }
+    #contenedorMenu{
+        height: auto;
+    }
     header{
         height: 14vh;
     }
@@ -123,7 +140,8 @@ nav{
     }
     nav{
         height: auto;
-
     }
-
+    #contenedorMenu h6{
+        padding-top: 25px;
+    }
  }
