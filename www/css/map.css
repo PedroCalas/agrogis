@@ -107,7 +107,7 @@ nav{
 #button-geo-div{
   height: 30px;
   position: absolute;
-  top: 10em;
+  top: 15em;
   left: 6vw;
   z-index: 1000;
 }
