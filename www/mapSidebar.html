@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/L.Control.HtmlLegend.css">
+    <link rel="stylesheet" href="css/leaflet.awesome-markers.css">
+
+    <!-- BOOTSTRAP Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/mapSidebar.css">
+
+</head>
+<body>
+    <!-- <div class="container-fluid encabezadoMenu">
+        <div class="row justify-content-center align-items-center">
+            <div class="col col-12 text-center pb-1">
+                <a href="menu.html"><img src="img/logofondoblanco.jpg" alt="" width="45em"></a>
+            </div>
+        </div>
+    </div> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-sm-start fixed-top">
+  <a class="navbar-brand order-1 order-lg-0 ml-lg-0 ml-2 mr-auto" href="#">Navbar</a>
+  <button class="navbar-toggler align-self-start" type="button">
+        <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse d-flex flex-column flex-lg-row flex-xl-row justify-content-lg-end bg-dark p-3 p-lg-0 mt-5 mt-lg-0 mobileMenu" id="navbarSupportedContent">
+    <ul class="navbar-nav align-self-stretch">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<div class="overlay">
+
+</div>
+
+
+    <div class="container-fluid" id="contenedorMapa">
+        <!-- <div class="row justify-content-center mt-1">
+            <div class="col col-10 py-1">
+                 <form>
+                   <select id="capasOpciones" class="form-control custom-select">
+                     <option value="" name="">Seleccione Una Capa</option>
+                     <option value="0" name="aluminio">Aluminio</option>
+                     <option value="1" name="arcilla">Arcilla</option>
+                     <option value="2" name="boro">Boro</option>
+                     <option value="3" name="calcio">Calcio</option>
+                     <option value="4" name="ctc">CTC</option>
+                     <option value="5" name="cobre">Cobre</option>
+                     <option value="6" name="hierro">Hierro</option>
+                     <option value="7" name="hidrogeno">Hidrógeno</option>
+                     <option value="8" name="potasio">Potasio</option>
+                     <option value="9" name="magnesio">Magnesio</option>
+                     <option value="10" name="manganeso">Manganeso</option>
+                     <option value="11" name="mos">Materia Orgánica</option>
+                     <option value="12" name="mos">Fósforo</option>
+                     <option value="13" name="pcal">PCAL</option>
+                     <option value="14" name="ph">Ph</option>
+                     <option value="15" name="azufre">Azufre</option>
+                     <option value="16" name="silicio">Silicio</option>
+                     <option value="17" name="zn">zinc</option>
+                     <option value="18" name="calcario">Calcario</option>
+                     <option value="19" name="kcal">Kcl</option>
+                     <option value="20" name="sat">SPS</option>
+                     <option value="21" name="sili">Silicato</option>
+                   </select>
+                 </form>
+             </div>
+        </div> -->
+        <div class="row justify-content-center">
+            <div class="col col-11" id="map"></div>
+        </div>
+
+        <div id="button-geo-div">
+           <button id="button-geo" type="button" class="btn mapbuttons" style="background-color:green;color:rgb(255,255,255);"><i class="fa fa-crosshairs"></i></button>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="menuFooter">
+        <nav class="row justify-content-around text-center pb-1">
+            <div class="col col-4 pt-1">
+                <button class="btn btn-success"><p>Donwloads</p></button>
+            </div>
+            <div class="col col-4  pt-1">
+                <button  class="btn btn-success"><p>Recomendación</p></button>
+            </div>
+            <div class="col col-4  pt-1">
+                <button id="compararBoton" class="btn btn-success"><p>Comparar</p></button>
+            </div>
+        </nav>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"></script>
+
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript" src="js/leaflet.js"></script>
+    <script src="js/leaflet.awesome-markers.js"></script>
+    <script src="https://unpkg.com/proj4"></script>
+    <script src="https://unpkg.com/georaster"></script>
+    <script src="https://unpkg.com/georaster-layer-for-leaflet/georaster-layer-for-leaflet.browserify.min.js"></script>
+    <script type="text/javascript" src="js/leaflet-side-by-side.js"></script>
+    <script type="text/javascript" src="js/L.Control.HtmlLegend.js"></script>
+    <script type="text/javascript" src="js/Leaflet.Control.Custom.js"></script>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+    <script type="text/javascript" src="js/map2.js"></script>
+    <script type="text/javascript" src="js/mapSidebar.js"></script>
+</body>
+</html>
