@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Líder</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/webfont/Eras-Bold/styles.css">
+        <link rel="stylesheet" href="css/map.css">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+        <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    </head>
+    <body>
+        <div class="container-fluid" id="contenedorRegistro">
+
+            <div class="row">
+                <div class="col text-right">
+                    <a href="index.html"><i class="far fa-arrow-alt-circle-left"></i></a>
+                </div>
+            </div>
+
+            <div class="row justify-content-center align-items-center pt-3">
+                <div class="col col-11 bg-dark text-center justify-content-center">
+                    <h5 class="mt-3" style="color:white;">Registro de Usuario</h5>
+                    <hr>
+                    <form class="col-12 pt-3 justify-content-center" th:action="@{/login}" method="get">
+                        <div class="form-group" id="contrasena-group">
+                            <input type="email" class="form-control" placeholder="Email" name="email"/>
+                        </div>
+                        <div class="form-group pt-3" id="contrasena-group">
+                            <input type="password" class="form-control" placeholder="Contraseña" name="password"/>
+                        </div>
+                        <div class="form-group pt-3" id="contrasena-group">
+                            <input type="password" class="form-control" placeholder="Confirma Contraseña" name="passwordConfirm"/>
+                        </div>
+                        <div class="form-group pt-3" id="user-group">
+                            <input type="text" class="form-control" placeholder="Nombre" name="name"/>
+                        </div>
+                        <div class="form-group pt-3" id="contrasena-group">
+                            <input type="text" class="form-control" placeholder="Apellidos" name="surname"/>
+                        </div>
+                        <div class="form-group pt-3" id="contrasena-group">
+                            <input type="text" class="form-control" placeholder="Dirección" name="address"/>
+                        </div>
+                        <div class="form-group pt-3" id="contrasena-group">
+                            <input type="text" class="form-control" placeholder="Provincia" name="state"/>
+                        </div>
+                        <div class="form-group pt-3" id="contrasena-group">
+                            <input type="text" class="form-control" placeholder="País" name="coutry"/>
+                        </div>
+                        <div class="form-group pt-3" id="contrasena-group">
+                            <input type="text" class="form-control" placeholder="Teléfono" name="phone"/>
+                        </div>
+                        <div class="form-group pt-3" id="contrasena-group">
+                            <input type="date" class="form-control" placeholder="Fecha de Nacimiento" name="date"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary"></i>  Ingresar </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+
+        <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
+        </script>
+    </body>
+</html>

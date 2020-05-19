@@ -9,12 +9,15 @@
         <link rel="stylesheet" href="css/webfont/Eras-Bold/styles.css">
         <link rel="stylesheet" href="css/map.css">
 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+        <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
     </head>
     <body>
         <div class="container-fluid" id="contenedorPortada">
             <div class="row justify-content-right">
                 <div class="col text-right pt-3">
-                    <a href="iniciaSesion.html"><img src="img/icons/user-circle-solid.svg" width="40em;" style="background-color:green;"></a>
+                    <a href="" data-toggle="modal" data-target="#ModalPrimero"><img src="img/icons/user-circle-solid.svg" width="40em;" style="background-color:green;"></a>
                 </div>
             </div>
             <div class="row justify-content-center align-items-center" style="height:78vh;">
@@ -26,6 +29,46 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="modal fade" id="ModalPrimero" tabindex="-1" role="dialog" aria-labelledby="ModalLabelPrimero" aria-hidden="true">
+            <div class="modal-dialog text-center" role="document">
+              <div class="col-sm-8 main-section">
+                  <div class="modal-content bg-dark">
+                      <!-- <div class="modal-header">
+                          <h5 class="modal-title" id="ModalLabelPrimero">Inicia Sesión</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div> -->
+                      <div class="modal-body">
+                          <div class="col-12 user-img">
+                              <img src="img/icons/user-circle-solid.svg" th:src="@{/img/icons/user-circle-solid.png}"/>
+                          </div>
+                          <form class="col-12" th:action="@{/login}" method="get">
+                              <div class="form-group" id="user-group">
+                                  <input type="text" class="form-control" placeholder="Nombre de Usuario" name="username"/>
+                              </div>
+                              <div class="form-group" id="contrasena-group">
+                                  <input type="password" class="form-control" placeholder="Contraseña" name="password"/>
+                              </div>
+                              <button type="submit" class="btn btn-primary buttonModal"></i>  Ingresar </button>
+                              <p style="color:white;">¿Todavía no tienes Cuenta?<a href="registro.html">Registrate Aquí</a></p>
+                          </form>
+                          <div class="col-12 forgot">
+                            <a href="#">Recordar contraseña</a>
+                          </div>
+                          <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                              Usuario o Contraseña Incorrecto.
+                          </div>
+                          <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                             Inicio Satisfactorio.
+                          </div>
+                       </div>
+                  </div>
+              </div>
+          </div>
+      </div>
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/fastclick.js"></script>
