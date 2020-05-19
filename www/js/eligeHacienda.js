@@ -42,7 +42,7 @@ var app = {
                 haciendasCaja.appendChild(haciendasRow);
 
                 var haciendasCol = document.createElement("div");
-                haciendasCol.className = "col col-10 m-2 text-center";
+                haciendasCol.className = "col col-11 m-2 text-center mt-2 columnaBorde";
                 haciendasRow.appendChild(haciendasCol);
 
                 var enlaceHacienda = document.createElement("a");
