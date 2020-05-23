@@ -34,18 +34,31 @@ var app = {
         $.getJSON( "https://sergiobasile.com/basileservice/api/noticias", function( objetoJSON ) {
             console.log(objetoJSON);
 
-            var haciendasRow = document.getElementById("haciendasRow");
+            var mapasRow = document.getElementById("mapasRow");
             for (var i = 0; i <= 3; i++){
 
-                var haciendasCol = document.createElement("div");
-                haciendasCol.className = "col col-5 m-2 text-center";
-                haciendasRow.appendChild(haciendasCol);
+                var mapasColContainer = document.createElement("div");
+                mapasColContainer.className = "col col-5 columnaBorde mt-5 text-center";
+                mapasRow.appendChild(mapasColContainer);
 
-                var enlaceHacienda = document.createElement("a");
+                var mapasColIcon = document.createElement("div");
+                mapasColIcon.className = "col col-12 text-center mt-2";
+                mapasColContainer.appendChild(mapasColIcon);
+
+                var icon = document.createElement("img");
+                icon.setAttribute("src", "img/icons/ubicacion.png");
+                icon.setAttribute("width", "40px");
+                mapasColIcon.appendChild(icon);
+
+                var mapasCol = document.createElement("div");
+                mapasCol.className = "col col-12  text-center ";
+                mapasColContainer.appendChild(mapasCol);
+
+                var enlaceMapas = document.createElement("a");
                 // var path = "eligeParcela.html" + "?" + "id=" + escape(objetoJSON[i].id);
                 var path = "mapSidebar.html"
-                enlaceHacienda.setAttribute("href", path);
-                haciendasCol.appendChild(enlaceHacienda);
+                enlaceMapas.setAttribute("href", path);
+                mapasCol.appendChild(enlaceMapas);
 
                 var titulo = document.createElement("h6");
                 if(i == 0){
@@ -60,7 +73,7 @@ var app = {
                 if(i == 3){
                     titulo.innerHTML = "Mapas de Compactación";
                 }
-                enlaceHacienda.appendChild(titulo);
+                enlaceMapas.appendChild(titulo);
             }
             console.log()
         });

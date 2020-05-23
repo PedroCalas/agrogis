@@ -38,11 +38,20 @@ var app = {
             for (var i = 0; i <= 2; i++){
 
                 var parcelasRow = document.createElement("div");
-                parcelasRow.className = "row justify-content-center align-items-center";
+                parcelasRow.className = "row justify-content-center align-items-center columnaBorde mt-2";
                 parcelasCaja.appendChild(parcelasRow);
 
+                var parcelasColIcon = document.createElement("div");
+                parcelasColIcon.className = "col col-2 text-center mt-2";
+                parcelasRow.appendChild(parcelasColIcon);
+
+                var icon = document.createElement("img");
+                icon.setAttribute("src", "img/icons/parcela.png");
+                icon.setAttribute("width", "40px");
+                parcelasColIcon.appendChild(icon);
+
                 var parcelasCol = document.createElement("div");
-                parcelasCol.className = "col col-10 m-2 text-center";
+                parcelasCol.className = "col col-10 mt-2 text-center";
                 parcelasRow.appendChild(parcelasCol);
 
                 var enlaceParcela = document.createElement("a");

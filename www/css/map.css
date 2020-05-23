@@ -23,7 +23,7 @@ body{
     background-size: cover;
 }
 #contenedorPortada img{
-    border: 2px solid green;
+    border: 2px solid rgb(0,70,0);
     border-radius: 20px;
     box-shadow: 2px 2px black;
 }
@@ -47,8 +47,17 @@ body{
     background-size: cover;
 }
 .back{
-    color: #313131;
+    color: rgb(0,70,0);
     font-size: 2.5em;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.next{
+    color: white;
+    font-size: 2.8em;
+    background-color: rgb(0,70,0);
+    border-radius: 50%;
 }
 
 /* MODAL INICIO SESION */
@@ -101,6 +110,20 @@ body{
     content: "\f023";
 }
 
+.form-group#email-group::before{
+    content: "\f1fa";
+}
+
+.form-group#adress-group::before{
+    content: "\f3c5";
+}
+.form-group#phone-group::before{
+    content: "\f095";
+}
+.form-group#date-group::before{
+    content: "\f073";
+}
+
 .buttonModal{
     width: 60%;
     margin: 5px 0 25px;
@@ -126,7 +149,7 @@ body{
     margin-top: 5px;
     border: 2px solid #173318;
     border-radius: 10px;
-    box-shadow: 1px 1px green;
+    box-shadow: 1px 1px rgb(0,70,0);
     width: 15%;
 }
 #contenedorMenu{
@@ -161,7 +184,7 @@ body{
 
 /* eligeHacienda */
 
-#contenedorHacienda{
+.contenedorElige{
     font-family: 'Eras-Bold', serif;
 
     width: 100%;
@@ -174,15 +197,22 @@ body{
 }
 
 .columnaBorde{
-    color: white;
-    border: 1px solid white;
+    color: rgb(0,70,0);
+    border: 1px solid rgba(0,70,0,0.8);
     border-radius: 2%;
-    background-color: rgba(0,70,0,0.8);
+    background-color: white;
+}
+
+.columnaBorde:focus{
+    color: white;
+    border: 1px solid rgba(0,70,0,0.8);
+    border-radius: 2%;
+    background-color: rgb(0,70,0);;
 }
 
 .columnaBorde h6{
     text-decoration: none;
-    color: white;
+    color: rgb(0,70,0);
     padding-top: 3px;
 }
 

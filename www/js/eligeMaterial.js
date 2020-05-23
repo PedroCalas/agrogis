@@ -34,34 +34,34 @@ var app = {
         $.getJSON( "https://sergiobasile.com/basileservice/api/noticias", function( objetoJSON ) {
             console.log(objetoJSON);
 
-            var haciendasCaja = document.getElementById("haciendasCaja");
+            var materialesCaja = document.getElementById("materialesCaja");
             for (var i = 0; i <= 2; i++){
 
-                var haciendasRow = document.createElement("div");
-                haciendasRow.className = "row justify-content-center align-items-center columnaBorde mt-2";
-                haciendasCaja.appendChild(haciendasRow);
+                var materialesRow = document.createElement("div");
+                materialesRow.className = "row justify-content-center align-items-center columnaBorde mt-2";
+                materialesCaja.appendChild(materialesRow);
 
-                var haciendasColIcon = document.createElement("div");
-                haciendasColIcon.className = "col col-2 text-center mt-2 ";
-                haciendasRow.appendChild(haciendasColIcon);
+                var materialesColIcon = document.createElement("div");
+                materialesColIcon.className = "col col-2 text-center mt-2";
+                materialesRow.appendChild(materialesColIcon);
 
                 var icon = document.createElement("img");
-                icon.setAttribute("src", "img/icons/vinedo.png");
+                icon.setAttribute("src", "img/icons/alfiler.png");
                 icon.setAttribute("width", "40px");
-                haciendasColIcon.appendChild(icon);
+                materialesColIcon.appendChild(icon);
 
-                var haciendasCol = document.createElement("div");
-                haciendasCol.className = "col col-10 text-center mt-2";
-                haciendasRow.appendChild(haciendasCol);
+                var materialesCol = document.createElement("div");
+                materialesCol.className = "col col-10 mt-2 text-center";
+                materialesRow.appendChild(materialesCol);
 
-                var enlaceHacienda = document.createElement("a");
-                var path = "eligeParcela.html" + "?" + "id=" + escape(objetoJSON[i].id);
-                enlaceHacienda.setAttribute("href", path);
-                haciendasCol.appendChild(enlaceHacienda);
+                var enlaceMaterial = document.createElement("a");
+                var path = "eligeMapa.html" + "?" + "id=" + escape(objetoJSON[i].id);
+                enlaceMaterial.setAttribute("href", path);
+                materialesCol.appendChild(enlaceMaterial);
 
                 var titulo = document.createElement("h6");
-                titulo.innerHTML = objetoJSON[i].titulo;
-                enlaceHacienda.appendChild(titulo);
+                titulo.innerHTML = objetoJSON[i].fecha;
+                enlaceMaterial.appendChild(titulo);
             }
             console.log()
         });
