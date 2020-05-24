@@ -208,10 +208,11 @@ body{
 
 .columnaBorde:active{
     color: white;
-    border: 1px solid rgba(0,70,0,0.8);
+    border: 3px solid rgb(0,70,0);
     border-radius: 2%;
-    background-color: rgb(0,70,0);
+    background-color: #34ce34;
     text-decoration: none;
+    box-shadow: 2px 2px grey;
 }
 
 .columnaBorde h6{
