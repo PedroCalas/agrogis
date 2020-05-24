@@ -164,16 +164,19 @@ body{
     background-size: cover;
 }
 #contenedorMenu .col{
-    background-color: rgba(0,70,0,0.8);
+    background-color: rgba(255,255,255,0.8);
     border: 1px solid #173318;
     box-shadow: 2px 2px black;
     border-radius: 20px;
 }
+#contenedorMenu a{
+    text-decoration: none;
+}
 #contenedorMenu h6{
     padding-top: 50px;
-    color: white;
+    color: rgb(0,70,0);
     font-family: 'Eras-Bold', serif;
-    font-size: 1.1em;
+    font-size: 1.2em;
     -webkit-text-stroke: 0.2px black;
 }
 
@@ -200,14 +203,15 @@ body{
     color: rgb(0,70,0);
     border: 1px solid rgba(0,70,0,0.8);
     border-radius: 2%;
-    background-color: white;
+    background-color: rgba(255,255,255,0.8);;
 }
 
-.columnaBorde:focus{
+.columnaBorde:active{
     color: white;
     border: 1px solid rgba(0,70,0,0.8);
     border-radius: 2%;
-    background-color: rgb(0,70,0);;
+    background-color: rgb(0,70,0);
+    text-decoration: none;
 }
 
 .columnaBorde h6{

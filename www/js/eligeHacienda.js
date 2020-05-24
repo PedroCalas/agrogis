@@ -55,8 +55,8 @@ var app = {
                 haciendasRow.appendChild(haciendasCol);
 
                 var enlaceHacienda = document.createElement("a");
-                var path = "eligeParcela.html" + "?" + "id=" + escape(objetoJSON[i].id);
-                enlaceHacienda.setAttribute("href", path);
+                // var path = "eligeParcela.html" + "?" + "id=" + escape(objetoJSON[i].id);
+                // enlaceHacienda.setAttribute("href", path);
                 haciendasCol.appendChild(enlaceHacienda);
 
                 var titulo = document.createElement("h6");
