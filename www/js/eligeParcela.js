@@ -42,12 +42,12 @@ var app = {
                 parcelasCaja.appendChild(parcelasRow);
 
                 var parcelasColIcon = document.createElement("div");
-                parcelasColIcon.className = "col col-2 text-center mt-2";
+                parcelasColIcon.className = "col col-2 text-center mt-2 mb-1";
                 parcelasRow.appendChild(parcelasColIcon);
 
                 var icon = document.createElement("img");
                 icon.setAttribute("src", "img/icons/parcela.png");
-                icon.setAttribute("width", "40px");
+                icon.setAttribute("width", "30px");
                 parcelasColIcon.appendChild(icon);
 
                 var parcelasCol = document.createElement("div");

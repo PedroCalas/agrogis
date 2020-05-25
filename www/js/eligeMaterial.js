@@ -35,6 +35,7 @@ var app = {
             console.log(objetoJSON);
 
             var materialesCaja = document.getElementById("materialesCaja");
+            var flechaSiguiente = document.getElementById("flechaSiguiente");
             for (var i = 0; i <= 2; i++){
 
                 var materialesRow = document.createElement("div");
@@ -42,12 +43,12 @@ var app = {
                 materialesCaja.appendChild(materialesRow);
 
                 var materialesColIcon = document.createElement("div");
-                materialesColIcon.className = "col col-2 text-center mt-2";
+                materialesColIcon.className = "col col-2 text-center mt-2 mb-1";
                 materialesRow.appendChild(materialesColIcon);
 
                 var icon = document.createElement("img");
                 icon.setAttribute("src", "img/icons/alfiler.png");
-                icon.setAttribute("width", "40px");
+                icon.setAttribute("width", "30px");
                 materialesColIcon.appendChild(icon);
 
                 var materialesCol = document.createElement("div");

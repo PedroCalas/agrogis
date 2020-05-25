@@ -63,8 +63,10 @@ var app = {
                 titulo.innerHTML = objetoJSON[i].titulo;
                 enlaceHacienda.appendChild(titulo);
             }
-            console.log()
+            
+            console.log();
         });
+
     },
     pasarVariables: function(pagina, nombres) {
 
