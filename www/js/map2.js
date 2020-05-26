@@ -833,7 +833,11 @@ function anyadirCapa(config){
 		alert("Esta capa ya se ha seleccionado");
 		return;
 	}
-	config.capa.addTo(map)
+	config.capa.addTo(map);
+
+	// CREO QUE VA A CAMBIAR LAS COORDENADAS DE LA VISTA
+	// map.fitBounds(capa.getBounds());
+
 	var posicionLeyenda;
 	if (!controlSideBySide || !config1){
 		if (config1 && config1.capa) {
