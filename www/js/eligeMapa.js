@@ -35,7 +35,7 @@ var app = {
             console.log(objetoJSON);
 
             var mapasRow = document.getElementById("mapasRow");
-            for (var i = 0; i <= 3; i++){
+            for (var i = 0; i <= 4; i++){
 
                 var mapasColContainer = document.createElement("div");
                 mapasColContainer.className = "col col-5 columnaBorde mt-5 text-center";
@@ -72,6 +72,9 @@ var app = {
                 }
                 if(i == 3){
                     titulo.innerHTML = "Mapas de Compactación";
+                }
+                if(i == 4){
+                    titulo.innerHTML = "Mapas de Colecta de Muestras";
                 }
                 enlaceMapas.appendChild(titulo);
             }
