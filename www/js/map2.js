@@ -908,3 +908,11 @@ function mostrarLeyenda(config, posicionLeyenda){
 		controlLeyendaDerecha = control;
 	}
 }
+
+//Pintar incidencia en el Mapa
+$("#incidencia").click(function(){
+	map.on('click', function(evento){
+	    var texto = 'Esto es una incidencia';
+	    app.pintaIncidencia(evento.latlng,texto,map);
+	});
+})
