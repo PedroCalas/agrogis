@@ -22,19 +22,25 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-sm-start fixed-top">
-	  <a class="navbar-brand order-1 order-lg-0 ml-lg-0 ml-2 mr-auto" href="#"></a>
-	  <button class="navbar-toggler align-self-start" type="button">
-	        <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <img src="img/logobien.jpeg" width="10%" alt="" class="img-responsive">
-	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-sm-start fixed-top mb-5">
+    <div class="row">
+        <div class="col col-3">
+            <button class="navbar-toggler align-self-start" type="button">
+      	        <span class="navbar-toggler-icon"></span>
+      	  </button>
+        </div>
+        <div class="col col-9 text-right brandimg">
+            <a class="navbar-brand order-1 order-lg-0 ml-lg-0 ml-2 mr-auto" href="#"><img src="img/logobien.jpeg"  alt="" class="img-responsive"></a>
+        </div>
+    </div>
+
+
 	  <div class="collapse navbar-collapse d-flex flex-column flex-lg-row flex-xl-row justify-content-lg-end bg-dark p-3 p-lg-0 mt-5 mt-lg-0 mobileMenu" id="navbarSupportedContent">
 	     <form class="form-inline my-2 my-lg-0">
 	        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
 	        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Aceptar</button>
 	     </form>
-	
+
 	    <ul class="navbar-nav align-self-stretch">
 	      <li class="nav-item dropdown">
 	          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,7 +57,7 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="eligeMapa.html">COMPARAR</a>
 	      </li>
-	
+
 	      <div class="dropdown-divider"></div>
 	      <li class="nav-item">
 	        <a class="nav-link" href="eligeHacienda.html">Cambiar Hacienda</a>
@@ -65,8 +71,8 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="eligeMaterial.html">Cambiar Material</a>
 	      </li>
-	
-	
+
+
 	    <div class="dropdown-divider"></div>
 	     <li class="nav-item">
 	        <a class="nav-link" href="#" id="incidencia">MANDAR ALERTA</a>
@@ -78,12 +84,12 @@
 	        <a class="nav-link" href="#">Descargar</a>
 	     </li>
 	          <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-	
+
 	      <!-- <li class="nav-item">
 	        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
 	      </li> -->
 	    </ul>
-	
+
 	  </div>
 
 
@@ -94,7 +100,7 @@
 
 
 
-    <div class="container-fluid" id="contenedorMapa">
+    <div class="container-fluid mt-5 pt-4 min-vh-95" id="contenedorMapa">
         <div class="row justify-content-center">
             <div class="col col-11" id="map"></div>
         </div>
