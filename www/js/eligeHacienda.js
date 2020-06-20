@@ -2,7 +2,7 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
-        this.LlamadaAjaxActividades();
+        this.cargarHaciendas();
     },
     // Bind Event Listeners
     //
@@ -30,41 +30,41 @@ var app = {
         console.log('Received Event: ' + id);
     },
 
-    LlamadaAjaxActividades: function(){
-        $.getJSON( "https://sergiobasile.com/basileservice/api/noticias", function( objetoJSON ) {
-            console.log(objetoJSON);
+    cargarHaciendas: function(){
+        var url = comun.baseURL + "haciendas"
+    	jQuery.getJSON(url, function(respuesta) {
+            console.log(respuesta);
 
-            var haciendasCaja = document.getElementById("haciendasCaja");
-            for (var i = 0; i <= 2; i++){
+            var divDestino = document.getElementById("haciendasCaja");
+            for (var i = 0; i < respuesta.length; i++){
+            	var fila = document.createElement("div")
+            	fila.className = "row justify-content-center align-items-center columnaBorde mt-2";
+            	divDestino.appendChild(fila);
 
-                var haciendasRow = document.createElement("div");
-                haciendasRow.className = "row justify-content-center align-items-center columnaBorde mt-2";
-                haciendasCaja.appendChild(haciendasRow);
+            	var columnaIcono = document.createElement("div")
+            	columnaIcono.className = "col col-2 text-center mt-2 ";
+            	fila.appendChild(columnaIcono);
 
-                var haciendasColIcon = document.createElement("div");
-                haciendasColIcon.className = "col col-2 text-center mt-2 ";
-                haciendasRow.appendChild(haciendasColIcon);
+            	var icon = document.createElement("img");
+            	icon.setAttribute("src", "img/icons/vinedo.png");
+            	icon.setAttribute("width", "40px");
+            	columnaIcono.appendChild(icon);
 
-                var icon = document.createElement("img");
-                icon.setAttribute("src", "img/icons/vinedo.png");
-                icon.setAttribute("width", "40px");
-                haciendasColIcon.appendChild(icon);
+            	var columna = document.createElement("div")
+            	columna.className = "col col-10 text-center mt-2";
+            	fila.appendChild(columna);
 
-                var haciendasCol = document.createElement("div");
-                haciendasCol.className = "col col-10 text-center mt-2";
-                haciendasRow.appendChild(haciendasCol);
+            	var link 	= document.createElement("a");
+            	var titulo 	= document.createElement("h6")
+            	titulo.innerHTML = respuesta[i].nombre;
+            	var path 	= "eligeParcela.html" + "?" + "hacienda=" + escape(respuesta[i].id);
+            	link.setAttribute("href", path);
+            	link.appendChild(titulo);
 
-                var enlaceHacienda = document.createElement("a");
-                // var path = "eligeParcela.html" + "?" + "id=" + escape(objetoJSON[i].id);
-                // enlaceHacienda.setAttribute("href", path);
-                haciendasCol.appendChild(enlaceHacienda);
+            	columna.appendChild(link);
 
-                var titulo = document.createElement("h6");
-                titulo.innerHTML = objetoJSON[i].titulo;
-                enlaceHacienda.appendChild(titulo);
             }
             
-            console.log();
         });
 
     },

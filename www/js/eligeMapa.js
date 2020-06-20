@@ -2,7 +2,7 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
-        this.LlamadaAjaxActividades();
+        this.cargarTiposMapa();
     },
     // Bind Event Listeners
     //
@@ -30,12 +30,16 @@ var app = {
         console.log('Received Event: ' + id);
     },
 
-    LlamadaAjaxActividades: function(){
-        $.getJSON( "https://sergiobasile.com/basileservice/api/noticias", function( objetoJSON ) {
-            console.log(objetoJSON);
+    cargarTiposMapa: function(){
+    	var urlParams = new URLSearchParams(window.location.search);
+    	var idParcela = urlParams.get('parcela');
+    	
+    	var url = comun.baseURL + "tipomapas"; 
+        $.getJSON(url, function(respuesta) {
+            console.log(respuesta);
 
             var mapasRow = document.getElementById("mapasRow");
-            for (var i = 0; i <= 4; i++){
+            for (var i = 0; i < respuesta.length; i++){
 
                 var mapasColContainer = document.createElement("div");
                 mapasColContainer.className = "col col-5 columnaBorde mt-5 text-center";
@@ -55,27 +59,13 @@ var app = {
                 mapasColContainer.appendChild(mapasCol);
 
                 var enlaceMapas = document.createElement("a");
-                // var path = "eligeParcela.html" + "?" + "id=" + escape(objetoJSON[i].id);
-                var path = "mapSidebar.html"
+                var path = "mapSidebar.html?parcela=" + idParcela + "&tipoMapa=" + escape(respuesta[i].id);
                 enlaceMapas.setAttribute("href", path);
                 mapasCol.appendChild(enlaceMapas);
 
-                var titulo = document.createElement("h6");
-                if(i == 0){
-                    titulo.innerHTML = "Mapas de Atributos";
-                }
-                if(i == 1){
-                    titulo.innerHTML = "Mapas de Recomendación";
-                }
-                if(i == 2){
-                    titulo.innerHTML = "Imágenes Aéreas";
-                }
-                if(i == 3){
-                    titulo.innerHTML = "Mapas de Compactación";
-                }
-                if(i == 4){
-                    titulo.innerHTML = "Mapas de Colecta de Muestras";
-                }
+                
+                var titulo = document.createElement("h6") ;
+                titulo.innerHTML = respuesta[i].nombre;
                 enlaceMapas.appendChild(titulo);
             }
             console.log()

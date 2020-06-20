@@ -2,8 +2,10 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
-        this.LlamadaAjaxActividades();
+        this.cargarParcelas();
     },
+    
+    
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
@@ -11,6 +13,8 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
+    
+    
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
@@ -18,6 +22,8 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
+    
+    
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
@@ -30,12 +36,20 @@ var app = {
         console.log('Received Event: ' + id);
     },
 
-    LlamadaAjaxActividades: function(){
-        $.getJSON( "https://sergiobasile.com/basileservice/api/noticias", function( objetoJSON ) {
-            console.log(objetoJSON);
+    cargarParcelas: function(){
+    	var urlParams = new URLSearchParams(window.location.search);
+    	var idHacienda = urlParams.get('hacienda');
+    	
+        //var url = comun.baseURL + "haciendas/" + idHacienda + "/parcelas"; 
+        var url = comun.baseURL + "parcelas"; 
+    	
+    	
+    	
+        $.getJSON(url, function(respuesta) {
+            console.log(respuesta);
 
             var parcelasCaja = document.getElementById("parcelasCaja");
-            for (var i = 0; i <= 2; i++){
+            for (var i = 0; i < respuesta.length; i++){
 
                 var parcelasRow = document.createElement("div");
                 parcelasRow.className = "row justify-content-center align-items-center columnaBorde mt-2";
@@ -55,25 +69,25 @@ var app = {
                 parcelasRow.appendChild(parcelasCol);
 
                 var enlaceParcela = document.createElement("a");
-                var path = "eligeMapa.html" + "?" + "id=" + escape(objetoJSON[i].id);
+                var path = "eligeMapa.html" + "?" + "parcela=" + escape(respuesta[i].id);
                 enlaceParcela.setAttribute("href", path);
                 parcelasCol.appendChild(enlaceParcela);
 
                 var titulo = document.createElement("h6");
-                titulo.innerHTML = objetoJSON[i].fecha;
+                titulo.innerHTML = respuesta[i].nombre;
                 enlaceParcela.appendChild(titulo);
             }
-            console.log()
         });
     },
+    
+    
     pasarVariables: function(pagina, nombres) {
-
-    pagina +="?";
-    nomVec = nombres.split(",");
-    for (i=0; i<nomVec.length; i++){
-        pagina += nomVec[i] + "=" + escape(eval(nomVec[i]))+"&";
-        pagina = pagina.substring(0,pagina.length-1);
-        location.href=pagina;
-    }
+	    pagina +="?";
+	    nomVec = nombres.split(",");
+	    for (i=0; i<nomVec.length; i++){
+	        pagina += nomVec[i] + "=" + escape(eval(nomVec[i]))+"&";
+	        pagina = pagina.substring(0,pagina.length-1);
+	        location.href=pagina;
+	    }
     }
 };

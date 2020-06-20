@@ -2,7 +2,7 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
-        this.LlamadaAjaxActividades();
+        this.cargarMeteriales();
     },
     // Bind Event Listeners
     //
@@ -30,7 +30,7 @@ var app = {
         console.log('Received Event: ' + id);
     },
 
-    LlamadaAjaxActividades: function(){
+    cargarMeteriales: function(){
         $.getJSON( "https://sergiobasile.com/basileservice/api/noticias", function( objetoJSON ) {
             console.log(objetoJSON);
 
