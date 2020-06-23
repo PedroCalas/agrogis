@@ -20,33 +20,33 @@
 
     </head>
     <body>
-        <div class="modal-dialog text-center">
-      <div class="col-sm-8 main-section">
-          <div class="modal-content">
-              <div class="col-12 user-img">
-                  <img src="img/icons/user-circle-solid.svg" th:src="@{/img/icons/user-circle-solid.png}"/>
-              </div>
-              <form class="col-12" th:action="@{/login}" method="get">
-                  <div class="form-group" id="user-group">
-                      <input type="text" class="form-control" placeholder="Nombre de Usuario" name="username"/>
-                  </div>
-                  <div class="form-group" id="contrasena-group">
-                      <input type="password" class="form-control" placeholder="Contraseña" name="password"/>
-                  </div>
-                  <button type="submit" class="btn btn-primary"><i class="fas fa-unlock"></i>  Ingresar </button>
-              </form>
-              <div class="col-12 forgot">
-                  <a href="#">Recordar contraseña</a>
-              </div>
-              <div th:if="${param.error}" class="alert alert-danger" role="alert">
-                  Usuario o Contraseña Incorrecto.
-              </div>
-              <div th:if="${param.logout}" class="alert alert-success" role="alert">
-                  Inicio Satisfactorio.
-              </div>
-          </div>
-      </div>
-  </div>
+		<div class="modal-dialog text-center">
+	      <div class="col-sm-8 main-section">
+	          <div class="modal-content">
+	              <div class="col-12 user-img">
+	                  <img src="img/icons/user-circle-solid.svg" th:src="@{/img/icons/user-circle-solid.png}"/>
+	              </div>
+	              <form class="col-12" th:action="@{/login}" method="get">
+	                  <div class="form-group" id="user-group">
+	                      <input type="text" class="form-control" placeholder="Nombre de Usuario" name="username"/>
+	                  </div>
+	                  <div class="form-group" id="contrasena-group">
+	                      <input type="password" class="form-control" placeholder="Contraseña" name="password"/>
+	                  </div>
+	                  <button type="submit" class="btn btn-primary"><i class="fas fa-unlock"></i>  Ingresar </button>
+	              </form>
+	              <div class="col-12 forgot">
+	                  <a href="#">Recordar contraseña</a>
+	              </div>
+	              <div th:if="${param.error}" class="alert alert-danger" role="alert" style="display: none">
+	                  Usuario o Contraseña Incorrecto.
+	              </div>
+	              <div th:if="${param.logout}" class="alert alert-success" role="alert" style="display: none">
+	                  Inicio Satisfactorio.
+	              </div>
+	          </div>
+	      </div>
+	  </div>
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/lib/fastclick.js"></script>

@@ -733,10 +733,39 @@ function cargarMapa(){
 		collapsed: false,
 		autoZIndex: false
 	}).addTo(map);
+	
+	//JCB: PRueba
+	 var url_to_geotiff_file = "https://lider.mapearte.com/api/mapas/1/file";
+	 
+
+     fetch(url_to_geotiff_file)
+     	.then(response => response.arrayBuffer())
+     	.then(arrayBuffer => {
+     		parseGeoraster(arrayBuffer).then(georaster => {
+     			var config = configGeoraster[0];
+     			var capa = new GeoRasterLayer({
+     				attribution: "Planet",
+     				georaster: georaster,
+     				opacity: 0.9,
+     				pixelValuesToColorFn: config.pixelValuesToColorFn,
+     				resolution: 400 // optional parameter for adjusting display resolution
+     			});
+     			capa.addTo(map);
+     			map.fitBounds(capa.getBounds());
+     			config.capa = capa;
+     			anyadirCapa(config);
+     			
+     			config1 = config;
+     			config2 = config;
+     			comparar();
+     			
+     		});
+     	});	
+
 }
 
 
-$("#compararBoton").click(function(){
+function comparar(){
 	if (controlSideBySide){
 		map.removeControl(controlSideBySide);
 		controlSideBySide = null;
@@ -761,7 +790,7 @@ $("#compararBoton").click(function(){
 		}
 		controlSideBySide = L.control.sideBySide(capa1, capa2).addTo(map);
 	}
-});
+};
 
 //BOTON GEOLOCALIZAR
 	  var marcadorGeo = L.AwesomeMarkers.icon({
@@ -786,10 +815,9 @@ $("#compararBoton").click(function(){
 
 $("#capasOpciones").change(function(){
 	console.log("cambiarCapa")
-
 	var optionValue = $(this).val();
-	var config = configGeoraster[parseInt(optionValue)];
 
+	var config = configGeoraster[parseInt(optionValue)];
 
 	if (!config.capa){
 		window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + config.filename, ficheroEncontrado.bind(config), errorFichero);
