@@ -22,7 +22,7 @@
             </div>
             <div class="row justify-content-center align-items-center" style="height:78vh;">
                 <div class="col col-9 text-center align-self-end res">
-                    <a href="menu.html"><img src="img/logobien.jpeg" alt="" class="img-responsive" style="margin: 0 auto;" width="70%"></a>
+                    <a href="#"><img src="img/logobien.jpeg" alt="" class="img-responsive" style="margin: 0 auto;" width="70%"></a>
                 </div>
                 <div class="col col-10 text-center align-self-start mt-2">
                     <h1>Para alimentar el mundo primero hay que alimentar el suelo</h1>
@@ -43,25 +43,25 @@
                       </div> -->
                       <div class="modal-body">
                           <div class="col-12 user-img">
-                              <img src="img/icons/user-circle-solid.svg" th:src="@{/img/icons/user-circle-solid.png}"/>
+                              <img src="img/icons/user-circle-solid.svg"/>
                           </div>
-                          <form class="col-12" onsubmit="return app.login()">
+                          <form class="col-12">
                               <div class="form-group" id="user-group">
-                                  <input type="text" class="form-control" placeholder="Nombre de Usuario" name="username"/>
+                                  <input id="username" type="text" class="form-control" placeholder="Nombre de Usuario" />
                               </div>
                               <div class="form-group" id="contrasena-group">
-                                  <input type="password" class="form-control" placeholder="Contraseña" name="password"/>
+                                  <input id="password" type="password" class="form-control" placeholder="Contraseña" />
                               </div>
-                              <button type="submit" class="btn btn-success buttonModal"></i>  Ingresar </button>
+                              <button id="btnLogin" class="btn btn-success buttonModal" type="button">  Ingresar </button>
                               <p style="color:white;">¿Todavía no tienes Cuenta?<a href="registro.html">Registrate Aquí</a></p>
                           </form>
                           <div class="col-12 forgot">
                             <a href="#">Recordar contraseña</a>
                           </div>
-                          <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                          <div id="msgUsuarioIncorrecto" class="alert alert-danger" role="alert" style="display: none">
                               Usuario o Contraseña Incorrecto.
                           </div>
-                          <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                          <div class="alert alert-success" role="alert" style="display: none">
                              Inicio Satisfactorio.
                           </div>
                        </div>
@@ -81,12 +81,12 @@
 
         <script type="text/javascript" src="js/lib/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/comun.js"></script>
         <script type="text/javascript" src="js/iniciaSesion.js"></script>
 
         <script type="text/javascript">
             app.initialize();
         </script>
 
-        </script>
     </body>
 </html>
