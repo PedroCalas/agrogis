@@ -9,6 +9,11 @@
 body{
     margin: 0px;
     padding: 0px;
+    font-family: 'Eras-Bold';
+}
+
+a:link, a:visited, a:active {
+    text-decoration:none;
 }
 
 /* INDEX */
@@ -182,7 +187,8 @@ body{
     padding-top: 50px;
     color: rgb(0,70,0);
     font-family: 'Eras-Bold', serif;
-    font-size: 1.2em;
+    font-size: 1em;
+    font-weight: bold;
     -webkit-text-stroke: 0.2px black;
 }
 
@@ -225,6 +231,8 @@ body{
     text-decoration: none;
     color: rgb(0,70,0);
     padding-top: 3px;
+    font-size: 0.9em;
+    font-weight: bold;
 }
 
 

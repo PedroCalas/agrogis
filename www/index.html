@@ -22,7 +22,7 @@
             </div>
             <div class="row justify-content-center align-items-center" style="height:78vh;">
                 <div class="col col-9 text-center align-self-end res">
-                    <a href="#"><img src="img/logobien.jpeg" alt="" class="img-responsive" style="margin: 0 auto;" width="70%"></a>
+                    <a href="menu.html"><img src="img/logobien.jpeg" alt="" class="img-responsive" style="margin: 0 auto;" width="70%"></a>
                 </div>
                 <div class="col col-10 text-center align-self-start mt-2">
                     <h1>Para alimentar el mundo primero hay que alimentar el suelo</h1>
@@ -45,23 +45,23 @@
                           <div class="col-12 user-img">
                               <img src="img/icons/user-circle-solid.svg" th:src="@{/img/icons/user-circle-solid.png}"/>
                           </div>
-                          <form class="col-12">
+                          <form class="col-12" onsubmit="return app.login()">
                               <div class="form-group" id="user-group">
-                                  <input id="username" type="text" class="form-control" placeholder="Nombre de Usuario" />
+                                  <input type="text" class="form-control" placeholder="Nombre de Usuario" name="username"/>
                               </div>
                               <div class="form-group" id="contrasena-group">
-                                  <input id="password" type="password" class="form-control" placeholder="Contraseña" />
+                                  <input type="password" class="form-control" placeholder="Contraseña" name="password"/>
                               </div>
-                              <button id="btnLogin" class="btn btn-success buttonModal" type="button"></i>  Ingresar </button>
+                              <button type="submit" class="btn btn-success buttonModal"></i>  Ingresar </button>
                               <p style="color:white;">¿Todavía no tienes Cuenta?<a href="registro.html">Registrate Aquí</a></p>
                           </form>
                           <div class="col-12 forgot">
                             <a href="#">Recordar contraseña</a>
                           </div>
-                          <div id="msgUsuarioIncorrecto" th:if="${param.error}" class="alert alert-danger" role="alert" style="display: none">
+                          <div th:if="${param.error}" class="alert alert-danger" role="alert">
                               Usuario o Contraseña Incorrecto.
                           </div>
-                          <div th:if="${param.logout}" class="alert alert-success" role="alert" style="display: none">
+                          <div th:if="${param.logout}" class="alert alert-success" role="alert">
                              Inicio Satisfactorio.
                           </div>
                        </div>
@@ -81,7 +81,6 @@
 
         <script type="text/javascript" src="js/lib/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/comun.js"></script>
         <script type="text/javascript" src="js/iniciaSesion.js"></script>
 
         <script type="text/javascript">

@@ -31,12 +31,18 @@ var app = {
     },
 
     cargarMeteriales: function(){
-        $.getJSON( "https://sergiobasile.com/basileservice/api/noticias", function( objetoJSON ) {
-            console.log(objetoJSON);
+
+        var urlParams = new URLSearchParams(window.location.search);
+    	var idParcela = urlParams.get('tipomapas');
+
+    	var url = comun.baseURL + "tipomapaatributos";
+
+        $.getJSON( url, function(respuesta) {
+            console.log(respuesta);
 
             var materialesCaja = document.getElementById("materialesCaja");
             var flechaSiguiente = document.getElementById("flechaSiguiente");
-            for (var i = 0; i <= 2; i++){
+            for (var i = 0; i < respuesta.length; i++){
 
                 var materialesRow = document.createElement("div");
                 materialesRow.className = "row justify-content-center align-items-center columnaBorde mt-2";
@@ -56,7 +62,7 @@ var app = {
                 materialesRow.appendChild(materialesCol);
 
                 var enlaceMaterial = document.createElement("a");
-                var path = "eligeMapa.html" + "?" + "id=" + escape(objetoJSON[i].id);
+                var path = "mapSidebar.html?parcela=" + idParcela + "&tipomapaatributos=" + escape(respuesta[i].id);
                 enlaceMaterial.setAttribute("href", path);
                 materialesCol.appendChild(enlaceMaterial);
 

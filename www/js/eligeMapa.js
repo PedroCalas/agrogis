@@ -33,8 +33,8 @@ var app = {
     cargarTiposMapa: function(){
     	var urlParams = new URLSearchParams(window.location.search);
     	var idParcela = urlParams.get('parcela');
-    	
-    	var url = comun.baseURL + "tipomapas"; 
+
+    	var url = comun.baseURL + "tipomapas";
         $.getJSON(url, function(respuesta) {
             console.log(respuesta);
 
@@ -59,11 +59,11 @@ var app = {
                 mapasColContainer.appendChild(mapasCol);
 
                 var enlaceMapas = document.createElement("a");
-                var path = "mapSidebar.html?parcela=" + idParcela + "&tipoMapa=" + escape(respuesta[i].id);
+                var path = "eligeMaterial.html" + "?" + "&tipoMapa=" +escape(respuesta[i].id);
                 enlaceMapas.setAttribute("href", path);
                 mapasCol.appendChild(enlaceMapas);
 
-                
+
                 var titulo = document.createElement("h6") ;
                 titulo.innerHTML = respuesta[i].nombre;
                 enlaceMapas.appendChild(titulo);
