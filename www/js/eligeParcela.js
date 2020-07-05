@@ -69,7 +69,9 @@ var app = {
                 parcelasRow.appendChild(parcelasCol);
 
                 var enlaceParcela = document.createElement("a");
-                var path = "eligeMapa.html" + "?" + "parcela=" + escape(respuesta[i].id);
+                var path = "eligeMapa.html" + "?" + 
+                				"hacienda=" + idHacienda + 
+								"&parcela=" + escape(respuesta[i].id);
                 enlaceParcela.setAttribute("href", path);
                 parcelasCol.appendChild(enlaceParcela);
 

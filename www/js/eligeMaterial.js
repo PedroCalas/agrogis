@@ -32,8 +32,11 @@ var app = {
 
     cargarMeteriales: function(){
 
-        var urlParams = new URLSearchParams(window.location.search);
-    	var idParcela = urlParams.get('tipomapas');
+        var urlParams 	= new URLSearchParams(window.location.search);
+    	var idHacienda 	= urlParams.get('hacienda');
+    	var idParcela 	= urlParams.get('parcela');
+    	var idTipoMapa 	= urlParams.get('tipoMapa');
+    	var comparar 	= urlParams.get('comparar');
 
     	var url = comun.baseURL + "tipomapaatributos";
 
@@ -62,12 +65,21 @@ var app = {
                 materialesRow.appendChild(materialesCol);
 
                 var enlaceMaterial = document.createElement("a");
-                var path = "mapSidebar.html?parcela=" + idParcela + "&tipomapaatributos=" + escape(respuesta[i].id);
+                var path = "mapSidebar.html" + "?" + 
+								"hacienda=" + idHacienda  + 
+								"&parcela=" + idParcela	  + 
+								"&tipoMapa=" + idTipoMapa + 
+								"&material=" + escape(respuesta[i].id);
+                if (comparar){
+                	path += "&comparar=" + comparar; 
+                }
+
+                
                 enlaceMaterial.setAttribute("href", path);
                 materialesCol.appendChild(enlaceMaterial);
 
                 var titulo = document.createElement("h6");
-                titulo.innerHTML = objetoJSON[i].fecha;
+                titulo.innerHTML = respuesta[i].descripcion;
                 enlaceMaterial.appendChild(titulo);
             }
             console.log()

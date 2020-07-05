@@ -705,6 +705,15 @@ function onDeviceReady() {
 
 function cargarMapa(){
 
+    var urlParams 	= new URLSearchParams(window.location.search);
+	var idHacienda 	= urlParams.get('hacienda');
+	var idParcela 	= urlParams.get('parcela');
+	var idTipoMapa 	= urlParams.get('tipoMapa');
+	var idMaterial 	= urlParams.get('material');
+	var comparar 	= urlParams.get('comparar');
+	
+	
+	
 	var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 		zIndex: 0
@@ -735,37 +744,69 @@ function cargarMapa(){
 	}).addTo(map);
 	
 	//JCB: PRueba
-	 var url_to_geotiff_file = "https://lider.mapearte.com/api/mapas/1/file";
+	 var url_to_geotiff_file 	= "https://lider.mapearte.com/api/mapas/1/file";
+	 var url_to_geotiff_file2 	= "";
 	 
+	 if (comparar){
+		 url_to_geotiff_file2 	= "https://lider.mapearte.com/api/mapas/1/file";
+	 }
 
-     fetch(url_to_geotiff_file)
-     	.then(response => response.arrayBuffer())
-     	.then(arrayBuffer => {
-     		parseGeoraster(arrayBuffer).then(georaster => {
-     			var config = configGeoraster[0];
-     			var capa = new GeoRasterLayer({
-     				attribution: "Planet",
-     				georaster: georaster,
-     				opacity: 0.9,
-     				pixelValuesToColorFn: config.pixelValuesToColorFn,
-     				resolution: 400 // optional parameter for adjusting display resolution
-     			});
-     			capa.addTo(map);
-     			map.fitBounds(capa.getBounds());
-     			config.capa = capa;
-     			anyadirCapa(config);
-     			
-     			config1 = config;
-     			config2 = config;
-     			comparar();
-     			
-     		});
-     	});	
+	 
+	 var promesas = [fetch(url_to_geotiff_file).then(response => response.arrayBuffer())];
+	 if (url_to_geotiff_file2){
+		 promesas.push(fetch(url_to_geotiff_file2).then(response => response.arrayBuffer()));
+	 }
+	 Promise.all(promesas).then(function(respuestas){
+		 debugger;
+    	 var promesasGeoraster = [parseGeoraster(respuestas[0])];
+    	 if (respuestas.length > 1){
+    		 promesasGeoraster.push(parseGeoraster(respuestas[1]))
+    	 } 
+    	 
+    	 Promise.all(promesasGeoraster).then(function(georasters){
+    		 debugger;
+    		 var config = configGeoraster[0];
+    		 var capa = new GeoRasterLayer({
+    			 attribution: "Planet",
+    			 georaster: georasters[0],
+    			 opacity: 0.9,
+    			 pixelValuesToColorFn: config.pixelValuesToColorFn,
+    			 resolution: 400 // optional parameter for adjusting display resolution
+    		 });
+    		 
+			 capa.addTo(map);
+			 map.fitBounds(capa.getBounds());
 
+			 if (georasters.length === 1){
+    			 config.capa = capa;
+    			 anyadirCapa(config);
+    			 
+    		 } else {
+    			 config1 = config;
+    			 config2 = configGeoraster[1];
+    			 var capa = new GeoRasterLayer({
+    	    			 	attribution: "Planet",
+    	     				georaster: georasters[1],
+    	     				opacity: 0.9,
+    	     				pixelValuesToColorFn: config2.pixelValuesToColorFn,
+    	     				resolution: 400 // optional parameter for adjusting display resolution
+   	     		});
+   	     		capa.addTo(map);
+   	     		map.fitBounds(capa.getBounds());
+   	     		config2.capa = capa;
+   	     		compararCapas();
+    		 }
+ 			
+    	 });
+
+		 
+		 
+		 
+	 })
 }
 
 
-function comparar(){
+function compararCapas(){
 	if (controlSideBySide){
 		map.removeControl(controlSideBySide);
 		controlSideBySide = null;

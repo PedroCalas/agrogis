@@ -31,8 +31,10 @@ var app = {
     },
 
     cargarTiposMapa: function(){
-    	var urlParams = new URLSearchParams(window.location.search);
-    	var idParcela = urlParams.get('parcela');
+    	var urlParams 	= new URLSearchParams(window.location.search);
+    	var idHacienda 	= urlParams.get('hacienda');
+    	var idParcela 	= urlParams.get('parcela');
+    	var comparar 	= urlParams.get('comparar');
 
     	var url = comun.baseURL + "tipomapas";
         $.getJSON(url, function(respuesta) {
@@ -59,7 +61,14 @@ var app = {
                 mapasColContainer.appendChild(mapasCol);
 
                 var enlaceMapas = document.createElement("a");
-                var path = "eligeMaterial.html" + "?" + "&tipoMapa=" +escape(respuesta[i].id);
+                var path = "eligeMaterial.html" + "?" + 
+                				"hacienda=" + idHacienda + 
+                				"&parcela=" + idParcela	 + 
+								"&tipoMapa=" + escape(respuesta[i].id);
+                if (comparar){
+                	path += "&comparar=" + comparar; 
+                }
+                
                 enlaceMapas.setAttribute("href", path);
                 mapasCol.appendChild(enlaceMapas);
 
