@@ -270,8 +270,16 @@ header img{
 #button-geo-div{
   height: 30px;
   position: absolute;
-  top: 15em;
-  left: 6vw;
+  top: 78vh;
+  right: 8vw;
+  z-index: 1000;
+}
+
+#button-compara-div{
+  height: 30px;
+  position: absolute;
+  top: 87vh;
+  right: 8vw;
   z-index: 1000;
 }
 
