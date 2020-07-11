@@ -29,7 +29,7 @@ var app = {
     login: function(){
     	app.autenticar.call(this, jQuery("#username").val(),jQuery("#password").val(), 
     			function(respuesta){
-    				localStorage.setItem("login", respuesta);
+    				localStorage.setItem("login", JSON.stringify(respuesta));
     				$('#ModalPrimero').modal("hide");
     				window.location.replace("menu.html");
     			},

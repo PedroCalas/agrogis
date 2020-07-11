@@ -37,6 +37,7 @@ var app = {
     },
 
     cargarParcelas: function(){
+    	comun.configLogin();
     	var urlParams = new URLSearchParams(window.location.search);
     	var idHacienda = urlParams.get('hacienda');
     	
