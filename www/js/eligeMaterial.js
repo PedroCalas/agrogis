@@ -38,8 +38,8 @@ var app = {
     	var idTipoMapa 	= urlParams.get('tipoMapa');
     	var comparar 	= urlParams.get('comparar');
 
-    	var url = comun.baseURL + "tipomapaatributos";
-
+    	var url = comun.baseURL + "tipomapas/" + idTipoMapa + "/tipomapaatributos";
+    	
         $.getJSON( url, function(respuesta) {
             console.log(respuesta);
 
