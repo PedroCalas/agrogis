@@ -33,7 +33,6 @@ var app = {
     cargarHaciendas: function(){
         var url = comun.baseURL + "haciendas"
     	jQuery.getJSON(url, function(respuesta) {
-            console.log(respuesta);
 
             var divDestino = document.getElementById("haciendasCaja");
             for (var i = 0; i < respuesta.length; i++){

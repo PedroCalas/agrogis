@@ -27,11 +27,8 @@ var app = {
     },
     
     login: function(){
-    	console.log("login")
-    	
     	app.autenticar.call(this, jQuery("#username").val(),jQuery("#password").val(), 
     			function(respuesta){
-    				console.log(respuesta)
     				localStorage.setItem("login", respuesta);
     				$('#ModalPrimero').modal("hide");
     				window.location.replace("menu.html");

@@ -697,8 +697,6 @@ cargarMapa();
 
 // device APIs are available
 function onDeviceReady() {
-	console.log("onDeviceReady");
-	console.log(cordova.file);
 	cargarMapa();
 }
 
@@ -757,14 +755,12 @@ function cargarMapa(){
 		 promesas.push(fetch(url_to_geotiff_file2).then(response => response.arrayBuffer()));
 	 }
 	 Promise.all(promesas).then(function(respuestas){
-		 debugger;
-    	 var promesasGeoraster = [parseGeoraster(respuestas[0])];
+		 var promesasGeoraster = [parseGeoraster(respuestas[0])];
     	 if (respuestas.length > 1){
     		 promesasGeoraster.push(parseGeoraster(respuestas[1]))
     	 } 
     	 
     	 Promise.all(promesasGeoraster).then(function(georasters){
-    		 debugger;
     		 var config = configGeoraster[0];
     		 var capa = new GeoRasterLayer({
     			 attribution: "Planet",
@@ -855,7 +851,6 @@ function compararCapas(){
 
 
 $("#capasOpciones").change(function(){
-	console.log("cambiarCapa")
 	var optionValue = $(this).val();
 
 	var config = configGeoraster[parseInt(optionValue)];
@@ -872,7 +867,6 @@ $("#capasOpciones").change(function(){
 function ficheroEncontrado(fileEntry) {
 	var config = this;
 	fileEntry.file(function(file) {
-		console.log(config)
 		var reader = new FileReader();
 		reader.onloadend = function(e) {
 			parseGeoraster(e.target.result).then(function(georaster){

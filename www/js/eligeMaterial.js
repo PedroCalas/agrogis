@@ -41,8 +41,6 @@ var app = {
     	var url = comun.baseURL + "tipomapas/" + idTipoMapa + "/tipomapaatributos";
     	
         $.getJSON( url, function(respuesta) {
-            console.log(respuesta);
-
             var materialesCaja = document.getElementById("materialesCaja");
             var flechaSiguiente = document.getElementById("flechaSiguiente");
             for (var i = 0; i < respuesta.length; i++){
@@ -82,7 +80,6 @@ var app = {
                 titulo.innerHTML = respuesta[i].descripcion;
                 enlaceMaterial.appendChild(titulo);
             }
-            console.log()
         });
     },
     pasarVariables: function(pagina, nombres) {

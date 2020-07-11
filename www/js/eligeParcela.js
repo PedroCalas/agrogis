@@ -46,8 +46,6 @@ var app = {
     	
     	
         $.getJSON(url, function(respuesta) {
-            console.log(respuesta);
-
             var parcelasCaja = document.getElementById("parcelasCaja");
             for (var i = 0; i < respuesta.length; i++){
 

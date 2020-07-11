@@ -38,8 +38,6 @@ var app = {
 
     	var url = comun.baseURL + "tipomapas";
         $.getJSON(url, function(respuesta) {
-            console.log(respuesta);
-
             var mapasRow = document.getElementById("mapasRow");
             for (var i = 0; i < respuesta.length; i++){
 
@@ -77,7 +75,6 @@ var app = {
                 titulo.innerHTML = respuesta[i].nombre;
                 enlaceMapas.appendChild(titulo);
             }
-            console.log()
         });
     },
     pasarVariables: function(pagina, nombres) {
