@@ -31,6 +31,8 @@ var app = {
     },
 
     cargarTiposMapa: function(){
+    	comun.configLogin();
+    	
     	var urlParams 	= new URLSearchParams(window.location.search);
     	var idHacienda 	= urlParams.get('hacienda');
     	var idParcela 	= urlParams.get('parcela');

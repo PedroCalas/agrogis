@@ -744,14 +744,22 @@ function cargarMapa(){
 	}).addTo(map);
 
 	//JCB: PRueba
-	 var url_to_geotiff_file 	= "https://lider.mapearte.com/api/mapas/1/file";
+	 var url_to_geotiff_file 	= "https://lider.mapearte.com/api/mapas/2/file";
 	 var url_to_geotiff_file2 	= "";
 
 	 if (comparar){
-		 url_to_geotiff_file2 	= "https://lider.mapearte.com/api/mapas/1/file";
+		 url_to_geotiff_file2 	= "https://lider.mapearte.com/api/mapas/3/file";
 	 }
 
 
+<<<<<<< HEAD
+=======
+	map.on('click', function(evento){
+	    popupPosicion(evento.latlng, map);
+	});
+	 
+	 
+>>>>>>> a748866673b8be792d7ead34146684671b382fb4
 	 var promesas = [fetch(url_to_geotiff_file).then(response => response.arrayBuffer())];
 	 if (url_to_geotiff_file2){
 		 promesas.push(fetch(url_to_geotiff_file2).then(response => response.arrayBuffer()));
@@ -980,10 +988,57 @@ function mostrarLeyenda(config, posicionLeyenda){
 	}
 }
 
-//Pintar incidencia en el Mapa
-$("#incidencia").click(function(){
-	map.on('click', function(evento){
-	    var texto = 'Esto es una incidencia';
-	    app.pintaIncidencia(evento.latlng,texto,map);
-	});
-})
+//Popup posición
+function popupPosicion(location, mapa){
+    var popup = L.popup().setLatLng(location).setContent("Posicion: " + ddToDms(location.lat, location.lng) + "<br>" + 
+    		"<button onclick='mandarIncidencia()'>Mandar incidencia</button>").openOn(mapa);	
+};
+
+function mandarIncidencia(){
+	alert("Mando incidencia!!");
+};
+
+
+// This function returns the coordinate
+// conversion string in DD to DMS.
+function ddToDms(lat, lng) {
+	 function getDms(val) {
+	   var valDeg, valMin, valSec, result;
+	   val = Math.abs(val);
+	   valDeg = Math.floor(val);
+	   result = valDeg + "°";
+	   valMin = Math.floor((val - valDeg) * 60);
+	   result += valMin + "'";
+	   valSec = Math.round((val - valDeg - valMin / 60) * 3600 * 1000) / 1000;
+	   result += valSec + '"';
+	   return result;
+	 };		    
+	 
+	 
+   var lat = lat;
+   var lng = lng;
+   var latResult, lngResult, dmsResult;
+
+   lat = parseFloat(lat);  
+   lng = parseFloat(lng);
+
+   latResult = (lat >= 0)? 'N' : 'S';
+
+   // Call to getDms(lat) function for the coordinates of Latitude in DMS.
+   // The result is stored in latResult variable.
+   latResult += " " + getDms(lat);
+
+   lngResult = (lng >= 0)? 'E' : 'W';
+
+   // Call to getDms(lng) function for the coordinates of Longitude in DMS.
+   // The result is stored in lngResult variable.
+   lngResult += " " + getDms(lng);
+
+   // Joining both variables and separate them with a space.
+   dmsResult = latResult + ' ' + lngResult;
+
+   // Return the resultant string
+   return dmsResult;
+};
+
+
