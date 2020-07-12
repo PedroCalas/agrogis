@@ -697,6 +697,8 @@ cargarMapa();
 
 // device APIs are available
 function onDeviceReady() {
+	console.log("onDeviceReady");
+	console.log(cordova.file);
 	cargarMapa();
 }
 
@@ -709,9 +711,9 @@ function cargarMapa(){
 	var idTipoMapa 	= urlParams.get('tipoMapa');
 	var idMaterial 	= urlParams.get('material');
 	var comparar 	= urlParams.get('comparar');
-	
-	
-	
+
+
+
 	var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 		zIndex: 0
@@ -740,27 +742,29 @@ function cargarMapa(){
 		collapsed: false,
 		autoZIndex: false
 	}).addTo(map);
-	
+
 	//JCB: PRueba
 	 var url_to_geotiff_file 	= "https://lider.mapearte.com/api/mapas/1/file";
 	 var url_to_geotiff_file2 	= "";
-	 
+
 	 if (comparar){
 		 url_to_geotiff_file2 	= "https://lider.mapearte.com/api/mapas/1/file";
 	 }
 
-	 
+
 	 var promesas = [fetch(url_to_geotiff_file).then(response => response.arrayBuffer())];
 	 if (url_to_geotiff_file2){
 		 promesas.push(fetch(url_to_geotiff_file2).then(response => response.arrayBuffer()));
 	 }
 	 Promise.all(promesas).then(function(respuestas){
-		 var promesasGeoraster = [parseGeoraster(respuestas[0])];
+		 debugger;
+    	 var promesasGeoraster = [parseGeoraster(respuestas[0])];
     	 if (respuestas.length > 1){
     		 promesasGeoraster.push(parseGeoraster(respuestas[1]))
-    	 } 
-    	 
+    	 }
+
     	 Promise.all(promesasGeoraster).then(function(georasters){
+    		 debugger;
     		 var config = configGeoraster[0];
     		 var capa = new GeoRasterLayer({
     			 attribution: "Planet",
@@ -769,14 +773,14 @@ function cargarMapa(){
     			 pixelValuesToColorFn: config.pixelValuesToColorFn,
     			 resolution: 400 // optional parameter for adjusting display resolution
     		 });
-    		 
+
 			 capa.addTo(map);
 			 map.fitBounds(capa.getBounds());
 
 			 if (georasters.length === 1){
     			 config.capa = capa;
     			 anyadirCapa(config);
-    			 
+
     		 } else {
     			 config1 = config;
     			 config2 = configGeoraster[1];
@@ -792,12 +796,12 @@ function cargarMapa(){
    	     		config2.capa = capa;
    	     		compararCapas();
     		 }
- 			
+
     	 });
 
-		 
-		 
-		 
+
+
+
 	 })
 }
 
@@ -851,6 +855,7 @@ function compararCapas(){
 
 
 $("#capasOpciones").change(function(){
+	console.log("cambiarCapa")
 	var optionValue = $(this).val();
 
 	var config = configGeoraster[parseInt(optionValue)];
@@ -867,6 +872,7 @@ $("#capasOpciones").change(function(){
 function ficheroEncontrado(fileEntry) {
 	var config = this;
 	fileEntry.file(function(file) {
+		console.log(config)
 		var reader = new FileReader();
 		reader.onloadend = function(e) {
 			parseGeoraster(e.target.result).then(function(georaster){

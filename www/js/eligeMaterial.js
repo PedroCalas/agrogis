@@ -38,9 +38,11 @@ var app = {
     	var idTipoMapa 	= urlParams.get('tipoMapa');
     	var comparar 	= urlParams.get('comparar');
 
-    	var url = comun.baseURL + "tipomapas/" + idTipoMapa + "/tipomapaatributos";
-    	
+    	var url = comun.baseURL + "tipomapaatributos";
+
         $.getJSON( url, function(respuesta) {
+            console.log(respuesta);
+
             var materialesCaja = document.getElementById("materialesCaja");
             var flechaSiguiente = document.getElementById("flechaSiguiente");
             for (var i = 0; i < respuesta.length; i++){
@@ -63,16 +65,16 @@ var app = {
                 materialesRow.appendChild(materialesCol);
 
                 var enlaceMaterial = document.createElement("a");
-                var path = "mapSidebar.html" + "?" + 
-								"hacienda=" + idHacienda  + 
-								"&parcela=" + idParcela	  + 
-								"&tipoMapa=" + idTipoMapa + 
+                var path = "mapSidebar.html" + "?" +
+								"hacienda=" + idHacienda  +
+								"&parcela=" + idParcela	  +
+								"&tipoMapa=" + idTipoMapa +
 								"&material=" + escape(respuesta[i].id);
                 if (comparar){
-                	path += "&comparar=" + comparar; 
+                	path += "&comparar=" + comparar;
                 }
 
-                
+
                 enlaceMaterial.setAttribute("href", path);
                 materialesCol.appendChild(enlaceMaterial);
 
@@ -80,6 +82,7 @@ var app = {
                 titulo.innerHTML = respuesta[i].descripcion;
                 enlaceMaterial.appendChild(titulo);
             }
+            console.log()
         });
     },
     pasarVariables: function(pagina, nombres) {
