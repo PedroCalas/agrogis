@@ -283,6 +283,14 @@ header img{
   z-index: 1000;
 }
 
+#button-alerta-div{
+  height: 30px;
+  position: absolute;
+  top: 69vh;
+  right: 8vw;
+  z-index: 1000;
+}
+
 #menuFooter button{
     height: 30px;
 }

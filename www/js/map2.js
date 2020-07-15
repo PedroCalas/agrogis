@@ -752,14 +752,14 @@ function cargarMapa(){
 	 }
 
 
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// =======
 	map.on('click', function(evento){
 	    popupPosicion(evento.latlng, map);
 	});
-	 
-	 
->>>>>>> a748866673b8be792d7ead34146684671b382fb4
+
+
+// >>>>>>> a748866673b8be792d7ead34146684671b382fb4
 	 var promesas = [fetch(url_to_geotiff_file).then(response => response.arrayBuffer())];
 	 if (url_to_geotiff_file2){
 		 promesas.push(fetch(url_to_geotiff_file2).then(response => response.arrayBuffer()));
@@ -989,9 +989,9 @@ function mostrarLeyenda(config, posicionLeyenda){
 }
 
 //Popup posición
+// "Posicion: " + ddToDms(location.lat, location.lng)
 function popupPosicion(location, mapa){
-    var popup = L.popup().setLatLng(location).setContent("Posicion: " + ddToDms(location.lat, location.lng) + "<br>" + 
-    		"<button onclick='mandarIncidencia()'>Mandar incidencia</button>").openOn(mapa);	
+    var popup = L.popup().setLatLng(location).setContent("<form class='' action='index.html' method='post'><h4>Titulo</h4><input type='text'><h4>Titulo</h4><input type='textarea'><button class='btn btn-success' onclick='mandarIncidencia()'>Mandar incidencia</button></form>").openOn(mapa);
 };
 
 function mandarIncidencia(){
@@ -1012,14 +1012,14 @@ function ddToDms(lat, lng) {
 	   valSec = Math.round((val - valDeg - valMin / 60) * 3600 * 1000) / 1000;
 	   result += valSec + '"';
 	   return result;
-	 };		    
-	 
-	 
+	 };
+
+
    var lat = lat;
    var lng = lng;
    var latResult, lngResult, dmsResult;
 
-   lat = parseFloat(lat);  
+   lat = parseFloat(lat);
    lng = parseFloat(lng);
 
    latResult = (lat >= 0)? 'N' : 'S';
@@ -1040,5 +1040,3 @@ function ddToDms(lat, lng) {
    // Return the resultant string
    return dmsResult;
 };
-
-
