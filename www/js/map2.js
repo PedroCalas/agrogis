@@ -754,8 +754,9 @@ function cargarMapa(){
 
 // <<<<<<< HEAD
 // =======
+
 	map.on('click', function(evento){
-	    popupPosicion(evento.latlng, map);
+		popupPosicion(evento.latlng, map);
 	});
 
 
@@ -991,7 +992,7 @@ function mostrarLeyenda(config, posicionLeyenda){
 //Popup posición
 // "Posicion: " + ddToDms(location.lat, location.lng)
 function popupPosicion(location, mapa){
-    var popup = L.popup().setLatLng(location).setContent("<form class='' action='index.html' method='post'><h4>Titulo</h4><input type='text'><h4>Titulo</h4><input type='textarea'><button class='btn btn-success' onclick='mandarIncidencia()'>Mandar incidencia</button></form>").openOn(mapa);
+    var popup = L.popup().setLatLng(location).setContent("<form method='post'><div class='form-group'><label for='inputTitulo'>Título</label><input type='text' class='form-control' id='inputTitulo'></div><div class='form-group'><label for='inputDescripcion'>Descripción</label><input type='textarea' class='form-control' id='inputDescripcion'></div><button class='btn btn-success' onclick='mandarIncidencia()'>Mandar incidencia</button></form>").openOn(mapa);
 };
 
 function mandarIncidencia(){
