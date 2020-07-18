@@ -766,14 +766,12 @@ function cargarMapa(){
 		 promesas.push(fetch(url_to_geotiff_file2).then(response => response.arrayBuffer()));
 	 }
 	 Promise.all(promesas).then(function(respuestas){
-		 debugger;
     	 var promesasGeoraster = [parseGeoraster(respuestas[0])];
     	 if (respuestas.length > 1){
     		 promesasGeoraster.push(parseGeoraster(respuestas[1]))
     	 }
 
     	 Promise.all(promesasGeoraster).then(function(georasters){
-    		 debugger;
     		 var config = configGeoraster[0];
     		 var capa = new GeoRasterLayer({
     			 attribution: "Planet",
@@ -991,12 +989,16 @@ function mostrarLeyenda(config, posicionLeyenda){
 
 //Popup posición
 // "Posicion: " + ddToDms(location.lat, location.lng)
+
+
+var popup = null;
 function popupPosicion(location, mapa){
-    var popup = L.popup().setLatLng(location).setContent("<form method='post'><div class='form-group'><label for='inputTitulo'>Título</label><input type='text' class='form-control' id='inputTitulo'></div><div class='form-group'><label for='inputDescripcion'>Descripción</label><input type='textarea' class='form-control' id='inputDescripcion'></div><button class='btn btn-success' onclick='mandarIncidencia()'>Mandar incidencia</button></form>").openOn(mapa);
+    popup = L.popup().setLatLng(location).setContent("<div class='form-group'><label for='inputTitulo'>Título</label><input type='text' class='form-control' id='inputTitulo'></div><div class='form-group'><label for='inputDescripcion'>Descripción</label><input type='textarea' class='form-control' id='inputDescripcion'></div><button class='btn btn-success' onclick='mandarIncidencia()'>Mandar incidencia</button>").openOn(mapa);
 };
 
 function mandarIncidencia(){
-	alert("Mando incidencia!!");
+	alert("Incidencia enviada correctamente");
+	map.closePopup();	
 };
 
 
