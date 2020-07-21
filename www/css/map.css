@@ -265,12 +265,15 @@ header img{
 .mapbuttons{
 	background-color:rgb(66,166,215);
 	color:rgb(255,255,255);
+    width: 45px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 3px #343a40;
 }
 
 #button-geo-div{
   height: 30px;
   position: absolute;
-  top: 78vh;
+  top: 35vh;
   right: 8vw;
   z-index: 1000;
 }
@@ -278,7 +281,7 @@ header img{
 #button-compara-div{
   height: 30px;
   position: absolute;
-  top: 87vh;
+  top: 44vh;
   right: 8vw;
   z-index: 1000;
 }
@@ -286,7 +289,7 @@ header img{
 #button-alerta-div{
   height: 30px;
   position: absolute;
-  top: 69vh;
+  top: 26vh;
   right: 8vw;
   z-index: 1000;
 }
