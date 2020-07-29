@@ -703,16 +703,21 @@ function onDeviceReady() {
 }
 
 
+var idHacienda;
+var idParcela;
+var idTipoMapa;
+var idMaterial;
+var comparar;
+var urlParams;
+
 function cargarMapa(){
-
-    var urlParams 	= new URLSearchParams(window.location.search);
-	var idHacienda 	= urlParams.get('hacienda');
-	var idParcela 	= urlParams.get('parcela');
-	var idTipoMapa 	= urlParams.get('tipoMapa');
-	var idMaterial 	= urlParams.get('material');
-	var comparar 	= urlParams.get('comparar');
-
-
+    urlParams 	= new URLSearchParams(window.location.search);
+	idHacienda 	= urlParams.get('hacienda');
+	idParcela 	= urlParams.get('parcela');
+	idTipoMapa 	= urlParams.get('tipoMapa');
+	idMaterial 	= urlParams.get('material');
+	comparar 	= urlParams.get('comparar') === 'true';
+	
 
 	var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -752,15 +757,46 @@ function cargarMapa(){
 	 }
 
 
-// <<<<<<< HEAD
-// =======
-
 	map.on('click', function(evento){
 		popupPosicion(evento.latlng, map);
 	});
 
 
-// >>>>>>> a748866673b8be792d7ead34146684671b382fb4
+	
+	//BOTON GEOLOCALIZAR
+	var marcadorGeo = L.AwesomeMarkers.icon({
+		 icon: 'child',
+		 prefix:'fa',
+		 markerColor: 'blue'
+	});
+
+	$("#button-geo").click(function(){
+		map.locate({setView: true, maxZoom: 17}).on('locationfound', function(e){
+			var marker = L.marker([e.latitude, e.longitude],{icon:marcadorGeo}).bindPopup('Tu estás aquí :)');
+			map.addLayer(marker);
+		}).on('locationerror', function(e){
+			console.log(e);
+			alert("Location access denied.");
+		});
+	});
+
+
+
+	$("#capasOpciones").change(function(){
+		console.log("cambiarCapa")
+		var optionValue = $(this).val();
+
+		var config = configGeoraster[parseInt(optionValue)];
+
+		if (!config.capa){
+			window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + config.filename, ficheroEncontrado.bind(config), errorFichero);
+		} else {
+			anyadirCapa(config);
+		}
+	});
+	
+	
+	
 	 var promesas = [fetch(url_to_geotiff_file).then(response => response.arrayBuffer())];
 	 if (url_to_geotiff_file2){
 		 promesas.push(fetch(url_to_geotiff_file2).then(response => response.arrayBuffer()));
@@ -780,27 +816,22 @@ function cargarMapa(){
     			 pixelValuesToColorFn: config.pixelValuesToColorFn,
     			 resolution: 400 // optional parameter for adjusting display resolution
     		 });
-
-			 capa.addTo(map);
+			 config.capa = capa;
 			 map.fitBounds(capa.getBounds());
+			 config1 = config;
 
 			 if (georasters.length === 1){
-    			 config.capa = capa;
     			 anyadirCapa(config);
-
-    		 } else {
-    			 config1 = config;
+			 } else {
     			 config2 = configGeoraster[1];
-    			 var capa = new GeoRasterLayer({
+    			 var capa2 = new GeoRasterLayer({
     	    			 	attribution: "Planet",
     	     				georaster: georasters[1],
     	     				opacity: 0.9,
     	     				pixelValuesToColorFn: config2.pixelValuesToColorFn,
     	     				resolution: 400 // optional parameter for adjusting display resolution
    	     		});
-   	     		capa.addTo(map);
-   	     		map.fitBounds(capa.getBounds());
-   	     		config2.capa = capa;
+   	     		config2.capa = capa2;
    	     		compararCapas();
     		 }
 
@@ -814,65 +845,19 @@ function cargarMapa(){
 
 
 function compararCapas(){
-	if (controlSideBySide){
-		map.removeControl(controlSideBySide);
-		controlSideBySide = null;
-
-		if (config2){
-			map.removeLayer(config2.capa);
-			config2 = null;
-		}
-
-		if (controlLeyendaDerecha){
-			map.removeControl(controlLeyendaDerecha);
-			controlLeyendaDerecha = null;
-		}
-
-	} else {
-		var capa1, capa2;
-		if (config1){
-			capa1 = config1.capa;
-		}
-		if (config2){
-			capa2 = config2.capa;
-		}
-		controlSideBySide = L.control.sideBySide(capa1, capa2).addTo(map);
+	var capa1, capa2;
+	if (config1){
+		capa1 = config1.capa;
 	}
+	if (config2){
+		capa2 = config2.capa;
+	}
+	controlSideBySide = L.control.sideBySide(capa1, capa2).addTo(map);
+
+	anyadirCapa(config1, 0);
+	anyadirCapa(config2, 1);
 };
 
-//BOTON GEOLOCALIZAR
-	  var marcadorGeo = L.AwesomeMarkers.icon({
-		  icon: 'child',
-		  prefix:'fa',
-		  markerColor: 'blue'
-	  });
-
-	  $("#button-geo").click(function(){
-		  map.locate({setView: true, maxZoom: 17})
-		  .on('locationfound', function(e){
-			  var marker = L.marker([e.latitude, e.longitude],{icon:marcadorGeo}).bindPopup('Tu estás aquí :)');
-			  map.addLayer(marker);
-		  })
-		  .on('locationerror', function(e){
-			  console.log(e);
-			  alert("Location access denied.");
-		  });
-	  });
-
-
-
-$("#capasOpciones").change(function(){
-	console.log("cambiarCapa")
-	var optionValue = $(this).val();
-
-	var config = configGeoraster[parseInt(optionValue)];
-
-	if (!config.capa){
-		window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + config.filename, ficheroEncontrado.bind(config), errorFichero);
-	} else {
-		anyadirCapa(config);
-	}
-});
 
 
 
@@ -905,48 +890,26 @@ function errorFichero(error) {
 	console.log(error);
 }
 
-function anyadirCapa(config){
-
-	if ((config1 && config.filename === config1.filename) || (config2 && config.filename === config2.filename)){
-		alert("Esta capa ya se ha seleccionado");
-		return;
-	}
+function anyadirCapa(config, derecha){
 	config.capa.addTo(map);
 
-	// CREO QUE VA A CAMBIAR LAS COORDENADAS DE LA VISTA
-	// map.fitBounds(capa.getBounds());
-
 	var posicionLeyenda;
-	if (!controlSideBySide || !config1){
-		if (config1 && config1.capa) {
-			map.removeLayer(config1.capa);
-		}
-		config1 = jQuery.extend({}, config);
+	if (!derecha){
 		posicionLeyenda = "bottomleft";
 	} else {
-		if (config2 && config2.capa) {
-			map.removeLayer(config2.capa);
-		}
-		config2 = jQuery.extend({}, config);
 		posicionLeyenda = "bottomright";
 	}
 
 	//Si se ha cargado, indicamos las capas de la izquierda y derecha del control
 	if (controlSideBySide){
-		var capa1, capa2;
-		if (config1){
-			capa1 = config1.capa;
+		if (derecha){
+			controlSideBySide.setRightLayers(config.capa);
+		} else {
+		 	controlSideBySide.setLeftLayers(config.capa);
 		}
-		if (config2){
-			capa2 = config2.capa;
-		}
-	 	controlSideBySide.setLeftLayers(capa1);
-		controlSideBySide.setRightLayers(capa2);
 	}
-
-
 	mostrarLeyenda(config, posicionLeyenda);
-}
+};
 
 
 function mostrarLeyenda(config, posicionLeyenda){
@@ -987,8 +950,6 @@ function mostrarLeyenda(config, posicionLeyenda){
 	}
 }
 
-//Popup posición
-// "Posicion: " + ddToDms(location.lat, location.lng)
 
 
 var popup = null;
